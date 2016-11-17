@@ -1,5 +1,7 @@
+#include "car.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "truck.h"
 
 int main()
 {
@@ -14,6 +16,20 @@ int main()
   int hedgehog_x_position = (window_width / 2) - hedgehog_size;
   int hedgehog_y_position = window_height - (hedgehog_size * 2);
   hedgehog.setPosition(sf::Vector2f(hedgehog_x_position, hedgehog_y_position));
+
+  Truck truck;
+  Car car;
+
+  /*sf::RectangleShape car;
+  const int car_length = 50;
+  const int car_width = 25;
+  car.setSize(sf::Vector2f(car_length, car_width));
+  car.setFillColor(sf::Color::Yellow);
+  int car_x_position = (window_width / 2);
+  int car_y_position = 500 + (0.5 * (30 - car_width)); //30 = truck_width
+  car.setPosition(car_x_position, car_y_position);*/
+
+  sf::Clock clock;
 
   while(window.isOpen())
   {
@@ -56,8 +72,30 @@ int main()
       }
     }
 
+    const double update_time = 10; //milliseconds
+
+   /* if(clock.getElapsedTime().asMilliseconds() >= update_time)
+    {
+      truck_x_position += 1;
+      truck.setPosition();
+      car_x_position += 1;
+      car.setPosition(car_x_position, car_y_position);
+      clock.restart();
+    } */
+
+    /*if(truck.getPosition().x >= 600)
+    {
+      truck_x_position = -100; //100 = truck length
+    }
+    if(car.getPosition().x >= 600)
+    {
+      car_x_position = -car_length;
+    } */
+
     window.clear();
     window.draw(hedgehog);
+    window.draw(truck.getShape());
+    window.draw(car.getShape());
     window.display();
   }
 }
