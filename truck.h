@@ -5,19 +5,16 @@
 
 class Truck
 {
-  sf::RectangleShape truck_shape;
-  int length;
-  int width;
-  const int start_position_x = 0;
-  const int start_position_y = 500;
-  int position_x;
-  int position_y;
+  const int length;
+  const int width;
   sf::Vector2f position;
 public:
-  Truck();
+  //Creat a Truck with 'position' as the initial position
+  Truck(const sf::Vector2f& any_position);
   sf::Vector2f getPosition();
-  void setPosition();
+  void setPosition(const sf::Vector2f& any_position);
   sf::RectangleShape getShape();
+  int get_length() const { return length; }
 };
 
 #endif // TRUCK_H

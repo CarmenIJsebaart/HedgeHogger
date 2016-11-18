@@ -1,29 +1,27 @@
 #include "truck.h"
 
-Truck::Truck()
+Truck::Truck(const sf::Vector2f& any_position)
+  : length{100},
+    width{30},
+    position{any_position}
 {
-  width = 30;
-  length = 100;
-  position.x = start_position_x;
-  position.y = start_position_y;
-  position_x = start_position_x;
-  position_y = start_position_y;
-  truck_shape.setSize(sf::Vector2f(length, width));
-  truck_shape.setPosition(position);
-  truck_shape.setFillColor(sf::Color::Blue);
 }
 
 sf::Vector2f Truck::getPosition()
 {
-  return truck_shape.getPosition();
+  return position;
 }
 
-void Truck::setPosition()
+void Truck::setPosition(const sf::Vector2f& any_position)
 {
-  truck_shape.setPosition(sf::Vector2f(position_x, position_y));
+  this->position = any_position;
 }
 
 sf::RectangleShape Truck::getShape()
 {
+  sf::RectangleShape truck_shape;
+  truck_shape.setSize(sf::Vector2f(length, width));
+  truck_shape.setPosition(position);
+  truck_shape.setFillColor(sf::Color::Blue);
   return truck_shape;
 }
