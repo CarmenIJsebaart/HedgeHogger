@@ -5,19 +5,17 @@
 
 class Car
 {
-  sf::RectangleShape car_shape;
-  int length;
-  int width;
-  const int start_position_x = 0;
-  const int start_position_y = 500;
-  int position_x;
-  int position_y;
+  const int length;
+  const int width;
   sf::Vector2f position;
 public:
-  Car();
+  //Create a Car with 'position' as the initial position
+  Car(const sf::Vector2f &any_position);
+  int get_length() const {return length;}
   sf::Vector2f getPosition();
-  void setPosition();
+  void setPosition(const sf::Vector2f &any_position);
   sf::RectangleShape getShape();
+  int get_width() const { return width; }
 };
 
 #endif // CAR_H

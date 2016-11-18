@@ -1,29 +1,27 @@
 #include "car.h"
 
-Car::Car()
+Car::Car(const sf::Vector2f &any_position)
+  : length{50},
+    width{25},
+    position{any_position}
 {
-  width = 25;
-  length = 50;
-  position.x = start_position_x;
-  position.y = start_position_y;
-  position_x = start_position_x;
-  position_y = start_position_y;
-  car_shape.setSize(sf::Vector2f(length, width));
-  car_shape.setPosition(position);
-  car_shape.setFillColor(sf::Color::Yellow);
 }
 
 sf::Vector2f Car::getPosition()
 {
-  return car_shape.getPosition();
+  return position;
 }
 
-void Car::setPosition()
+void Car::setPosition(const sf::Vector2f &any_position)
 {
-  car_shape.setPosition(sf::Vector2f(position_x, position_y));
+  this->position = any_position;
 }
 
 sf::RectangleShape Car::getShape()
 {
+  sf::RectangleShape car_shape;
+  car_shape.setSize(sf::Vector2f(length, width));
+  car_shape.setPosition(position);
+  car_shape.setFillColor(sf::Color::Yellow);
   return car_shape;
 }

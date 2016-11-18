@@ -17,18 +17,8 @@ int main()
   int hedgehog_y_position = window_height - (hedgehog_size * 2);
   hedgehog.setPosition(sf::Vector2f(hedgehog_x_position, hedgehog_y_position));
 
-  Truck truck(sf::Vector2f(0.0,500.0));
-
-  Car car;
-
-  /*sf::RectangleShape car;
-  const int car_length = 50;
-  const int car_width = 25;
-  car.setSize(sf::Vector2f(car_length, car_width));
-  car.setFillColor(sf::Color::Yellow);
-  int car_x_position = (window_width / 2);
-  int car_y_position = 500 + (0.5 * (30 - car_width)); //30 = truck_width
-  car.setPosition(car_x_position, car_y_position);*/
+  Truck truck(sf::Vector2f(0, 450));
+  Car car(sf::Vector2f(window_width / 2, 452));
 
   sf::Clock clock;
 
@@ -77,27 +67,30 @@ int main()
 
     if(clock.getElapsedTime().asMilliseconds() >= update_time)
     {
+      sf::Vector2f truck_position = truck.getPosition();
+      truck_position.x += 1;
+      truck.setPosition(truck_position);
 
-      sf::Vector2f p = truck.getPosition();
-      p.x += 1;
-      truck.setPosition(p);
+      sf::Vector2f car_position = car.getPosition();
+      car_position.x += 1;
+      car.setPosition(car_position);
 
-      //car_x_position += 1;
-      //car.setPosition(car_x_position, car_y_position);
       clock.restart();
     }
 
     if(truck.getPosition().x >= 600)
     {
-      sf::Vector2f p = truck.getPosition();
-      p.x = -truck.get_length();
-      truck.setPosition(p);
+      sf::Vector2f truck_position = truck.getPosition();
+      truck_position.x = -truck.get_length();
+      truck.setPosition(truck_position);
     }
-    /*
+
     if(car.getPosition().x >= 600)
     {
-      car_x_position = -car_length;
-    } */
+      sf::Vector2f car_position = car.getPosition();
+      car_position.x = -car.get_length();
+      car.setPosition(car_position);
+    }
 
     window.clear();
     window.draw(hedgehog);

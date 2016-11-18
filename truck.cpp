@@ -1,6 +1,6 @@
 #include "truck.h"
 
-Truck::Truck(const sf::Vector2f& any_position)
+Truck::Truck(const sf::Vector2f &any_position)
   : length{100},
     width{30},
     position{any_position}
