@@ -5,9 +5,9 @@
 
 class Hedgehog
 {
-  int size;
-  sf::Vector2f position;
   sf::Color color;
+  sf::Vector2f position;
+  int size;
 public:
   //Create the Hedgehog with 'position' as the initial position
   Hedgehog(const sf::Vector2f &any_position, int size, sf::Color color);

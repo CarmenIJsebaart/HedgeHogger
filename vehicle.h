@@ -5,11 +5,11 @@
 
 class Vehicle
 {
-  int length;
-  int width;
-  float speed;
-  sf::Vector2f position;
   sf::Color color;
+  int length;
+  sf::Vector2f position;
+  float speed;
+  int width;
 public:
   //Create a Vehicle with 'position' as the initial position
   Vehicle(const sf::Vector2f &any_position, int length, int width, sf::Color color, float speed);
@@ -19,6 +19,7 @@ public:
   sf::RectangleShape getShape();
   int get_width() const { return width; }
   void drive();
+  void set_vehicle_left();
 };
 
 #endif // VEHICLE_H

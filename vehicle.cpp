@@ -1,17 +1,17 @@
 #include "vehicle.h"
 
 Vehicle::Vehicle(const sf::Vector2f &any_position, int length, int width, sf::Color color, float speed)
-  : length{length},
-    width{width},
+  : color{color},
+    length{length},
     position{any_position},
-    color{color},
-    speed{speed}
+    speed{speed},
+    width{width}
 {
 }
 
 void Vehicle::drive()
 {
-  position.x = position.x += speed;
+  position.x = position.x + speed;
   this->position = position;
 }
 
@@ -34,3 +34,11 @@ sf::RectangleShape Vehicle::getShape()
   return vehicle_shape;
 }
 
+void Vehicle::set_vehicle_left()
+{
+  if(position.x >= 600)
+  {
+    position.x = -length;
+    this->position = position;
+  }
+}

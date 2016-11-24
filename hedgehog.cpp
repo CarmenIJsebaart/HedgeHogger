@@ -1,9 +1,9 @@
 #include "hedgehog.h"
 
 Hedgehog::Hedgehog(const sf::Vector2f &any_position, int size, sf::Color color)
-  : size{size},
-    color{color},
-    position{any_position}
+  : color{color},
+    position{any_position},
+    size{size}
 {
 }
 

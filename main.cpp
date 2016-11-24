@@ -14,11 +14,13 @@ int main()
   const int size = 15;
   Hedgehog hedgehog(sf::Vector2f((window_width / 2) - size,
                                   window_height - (size * 2)), size, sf::Color::Red);
-  Vehicle truck1(sf::Vector2f(0  , 450), 100, 2 * size, sf::Color::Blue, 1);
-  Vehicle truck2(sf::Vector2f(300, 450), 100, 2 * size, sf::Color::Blue, 1);
-  Vehicle car1(sf::Vector2f(100, 390), 50, 25, sf::Color::Yellow, 1.5);
-  Vehicle car2(sf::Vector2f(300, 390), 50, 25, sf::Color::Yellow, 1.5);
-  Vehicle car3(sf::Vector2f(500, 390), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle truck1(sf::Vector2f(50  , 450), 100, 2 * size, sf::Color::Blue, 1);
+  Vehicle truck2(sf::Vector2f(283, 450), 100, 2 * size, sf::Color::Blue, 1);
+  Vehicle truck3(sf::Vector2f(516, 450), 100, 2 * size, sf::Color::Blue, 1);
+  Vehicle car1(sf::Vector2f(100, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle car2(sf::Vector2f(262, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle car3(sf::Vector2f(424, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle car4(sf::Vector2f(586, 400), 50, 25, sf::Color::Yellow, 1.5);
   assert(window_height % hedgehog.get_size() == 0);
 
   sf::Clock clock;
@@ -73,33 +75,31 @@ int main()
     {
       truck1.drive();
       truck2.drive();
+      truck3.drive();
       car1.drive();
       car2.drive();
       car3.drive();
+      car4.drive();
       clock.restart();
     }
 
-    if(truck1.getPosition().x >= 600)
-    {
-      sf::Vector2f truck_position = truck1.getPosition();
-      truck_position.x = -truck1.get_length();
-      truck1.setPosition(truck_position);
-    }
-
-    if(car1.getPosition().x >= 600)
-    {
-      sf::Vector2f car_position = car1.getPosition();
-      car_position.x = -car1.get_length() - 50;
-      car1.setPosition(car_position);
-    }
+    truck1.set_vehicle_left();
+    truck2.set_vehicle_left();
+    truck3.set_vehicle_left();
+    car1.set_vehicle_left();
+    car2.set_vehicle_left();
+    car3.set_vehicle_left();
+    car4.set_vehicle_left();
 
     window.clear();
     window.draw(hedgehog.getShape());
     window.draw(truck1.getShape());
     window.draw(truck2.getShape());
+    window.draw(truck3.getShape());
     window.draw(car1.getShape());
     window.draw(car2.getShape());
     window.draw(car3.getShape());
+    window.draw(car4.getShape());
     window.display();
   }
 }
