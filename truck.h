@@ -16,6 +16,7 @@ public:
   void setPosition(const sf::Vector2f &any_position);
   sf::RectangleShape getShape();
   int get_width() const { return width; }
+
 };
 
 #endif // TRUCK_H
