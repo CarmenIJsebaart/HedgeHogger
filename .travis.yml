@@ -31,9 +31,9 @@ before_script:
 script: 
   - qmake
   - make
-  - ./TowerBuilder &
+  - ./HedgeHogger &
   - sleep 10
-  - sudo killall -9 TowerBuilder
+  - sudo killall -9 HedgeHogger
   # Codecov
   - ./get_code_cov.sh
   - codecov
