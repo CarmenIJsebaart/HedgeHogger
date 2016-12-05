@@ -7,14 +7,15 @@ class Hedgehog
 {
   sf::Color color;
   sf::Vector2f position;
-  int size;
+  float size;
 public:
   //Create the Hedgehog with 'position' as the initial position
-  Hedgehog(const sf::Vector2f &any_position, int size, sf::Color color);
-  sf::Vector2f getPosition();
+  Hedgehog(const sf::Vector2f &any_position, float size, sf::Color color);
+  sf::Color getColor() const noexcept { return color; }
+  sf::Vector2f getPosition() const noexcept;
   void setPosition(const sf::Vector2f &any_position);
   sf::CircleShape getShape();
-  int get_size() const { return size; }
+  float getSize() const noexcept { return size; }
 };
 
 

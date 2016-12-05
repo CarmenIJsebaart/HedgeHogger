@@ -15,7 +15,7 @@ void Vehicle::drive()
   this->position = position;
 }
 
-sf::Vector2f Vehicle::getPosition()
+sf::Vector2f Vehicle::getPosition() const
 {
   return position;
 }

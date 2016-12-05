@@ -1,13 +1,13 @@
 #include "hedgehog.h"
 
-Hedgehog::Hedgehog(const sf::Vector2f &any_position, int size, sf::Color color)
+Hedgehog::Hedgehog(const sf::Vector2f &any_position, float size, sf::Color color)
   : color{color},
     position{any_position},
     size{size}
 {
 }
 
-sf::Vector2f Hedgehog::getPosition()
+sf::Vector2f Hedgehog::getPosition() const noexcept
 {
   return position;
 }
