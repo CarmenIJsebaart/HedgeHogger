@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += console c++11
+CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
@@ -9,14 +9,16 @@ SOURCES += main_test.cpp \
     hedgehog_test.cpp \
     vehicle_test.cpp
 
-QMAKE_CXXFLAGS += -std=c++14 -Wall -Wextra
-LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
-
 HEADERS += \
     vehicle.h \
     hedgehog.h
 
-LIBS += -lboost_unit_test_framework
+# C++14
+CONFIG += c++14
+QMAKE_CXX = g++-5
+QMAKE_LINK = g++-5
+QMAKE_CC = gcc-5
+QMAKE_CXXFLAGS += -Wall -Wextra -Werror -std=c++14
 
 # Debug and release build
 CONFIG += debug_and_release
@@ -36,3 +38,10 @@ CONFIG(debug, debug|release) {
   QMAKE_LFLAGS += -fsanitize=undefined
   LIBS += -lubsan
 }
+
+# SFML
+LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+
+# Boost.Test
+LIBS += -lboost_unit_test_framework
+

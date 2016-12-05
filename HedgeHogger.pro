@@ -18,3 +18,23 @@ LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 HEADERS += \
     vehicle.h \
     hedgehog.h
+
+
+# Debug and release mode
+CONFIG += debug_and_release
+# Release mode 
+CONFIG(release, debug|release) {
+  DEFINES += NDEBUG
+}
+# Debug mode
+CONFIG(debug, debug|release) {
+
+  # gcov
+  QMAKE_CXXFLAGS += -fprofile-arcs -ftest-coverage
+  LIBS += -lgcov
+
+  # UBSAN
+  QMAKE_CXXFLAGS += -fsanitize=undefined
+  QMAKE_LFLAGS += -fsanitize=undefined
+  LIBS += -lubsan
+}
