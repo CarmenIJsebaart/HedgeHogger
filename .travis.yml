@@ -29,8 +29,13 @@ before_script:
   - sleep 3 # give xvfb some time to start
 
 script: 
-  - qmake
-  - make
+  # Build and run the tests
+  - qmake HedgeHoggerTest.pro
+  - make debug
+  - ./HedgeHoggerTest
+  # Build and run the game
+  - qmake HedgeHogger.pro
+  - make release
   - ./HedgeHogger &
   - sleep 10
   - sudo killall -9 HedgeHogger
