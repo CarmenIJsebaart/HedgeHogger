@@ -21,7 +21,6 @@ int main()
   Vehicle car2(sf::Vector2f(262, 400), 50, 25, sf::Color::Yellow, 1.5);
   Vehicle car3(sf::Vector2f(424, 400), 50, 25, sf::Color::Yellow, 1.5);
   Vehicle car4(sf::Vector2f(586, 400), 50, 25, sf::Color::Yellow, 1.5);
-  assert(window_height % hedgehog.get_size() == 0);
 
   std::vector<Vehicle> vehicle_vector;
   vehicle_vector.push_back(truck1);
@@ -49,31 +48,31 @@ int main()
           window.close();
           break;
         case sf::Event::KeyPressed:
-          if(hedgehog.getPosition().x >= (2 * hedgehog.get_size()))
+          if(hedgehog.getPosition().x >= (2 * hedgehog.getSize()))
           {
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             {
               sf::Vector2f hedgehog_position = hedgehog.getPosition();
-              hedgehog_position.x = hedgehog.getPosition().x - (2 * hedgehog.get_size());
+              hedgehog_position.x = hedgehog.getPosition().x - (2 * hedgehog.getSize());
               hedgehog.setPosition(hedgehog_position);
             }
           }
-          if(hedgehog.getPosition().x <= (window_width - (4 * hedgehog.get_size())))
+          if(hedgehog.getPosition().x <= (window_width - (4 * hedgehog.getSize())))
           {
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             {
               sf::Vector2f hedgehog_position = hedgehog.getPosition();
-              hedgehog_position.x = hedgehog.getPosition().x + (2 * hedgehog.get_size());
+              hedgehog_position.x = hedgehog.getPosition().x + (2 * hedgehog.getSize());
               hedgehog.setPosition(hedgehog_position);
             }
           }
-          if(hedgehog.getPosition().y >= hedgehog.get_size())
+          if(hedgehog.getPosition().y >= hedgehog.getSize())
           {
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
             {
               sf::Vector2f hedgehog_position = hedgehog.getPosition();
               --hedgehog_position.y;
-              //hedgehog_position.y = hedgehog.getPosition().y - (2 * hedgehog.get_size());
+              //hedgehog_position.y = hedgehog.getPosition().y - (2 * hedgehog.getSize());
               hedgehog.setPosition(hedgehog_position);
             }
           }
@@ -82,7 +81,7 @@ int main()
             {
               sf::Vector2f hedgehog_position = hedgehog.getPosition();
               ++hedgehog_position.y;
-              //hedgehog_position.y = hedgehog.getPosition().y - (2 * hedgehog.get_size());
+              //hedgehog_position.y = hedgehog.getPosition().y - (2 * hedgehog.getSize());
               hedgehog.setPosition(hedgehog_position);
             }
           }
@@ -116,12 +115,12 @@ int main()
       //int x_min_vehicle = vehicle.getPosition().x;
       //int x_max_vehicle = vehicle.getPosition().x + vehicle.get_length();
       int y_min_vehicle = vehicle.getPosition().y;
-      int y_max_vehicle = vehicle.getPosition().y + vehicle.get_width();
+      int y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
 
-      //int x_min_hedgehog = hedgehog.getPosition().x - (hedgehog.get_size() / 2);
-      //int x_max_hedgehog = hedgehog.getPosition().x + (hedgehog.get_size() / 2);
-      int y_min_hedgehog = hedgehog.getPosition().y - (0 * hedgehog.get_size());
-      int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.get_size());
+      //int x_min_hedgehog = hedgehog.getPosition().x - (hedgehog.getSize() / 2);
+      //int x_max_hedgehog = hedgehog.getPosition().x + (hedgehog.getSize() / 2);
+      int y_min_hedgehog = hedgehog.getPosition().y - (0 * hedgehog.getSize());
+      int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
 
       if((y_min_hedgehog > y_min_vehicle && y_min_hedgehog < y_max_vehicle) ||
          (y_max_hedgehog > y_min_vehicle && y_max_hedgehog < y_max_vehicle))
