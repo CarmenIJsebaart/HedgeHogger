@@ -1,1 +1,6 @@
 *.pro.user
+HedgeHoggerTest
+debug/
+Makefile
+Makefile.Debug
+Makefile.Release
