@@ -34,3 +34,44 @@ sf::CircleShape Hedgehog::getShape()
   hedgehog_shape.setFillColor(color);
   return hedgehog_shape;
 }
+
+void move(sf::RenderWindow *window, Hedgehog &hedgehog)
+{
+  if(hedgehog.getPosition().x >= (2 * hedgehog.getSize()))
+  {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+      sf::Vector2f hedgehog_position = hedgehog.getPosition();
+      --hedgehog_position.x;
+      //hedgehog_position.x = hedgehog.getPosition().x - (2 * hedgehog.getSize());
+      hedgehog.setPosition(hedgehog_position);
+    }
+  }
+  if(hedgehog.getPosition().x <= (window->getSize().x - (4 * hedgehog.getSize())))
+  {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+      sf::Vector2f hedgehog_position = hedgehog.getPosition();
+      ++hedgehog_position.x;
+      //hedgehog_position.x = hedgehog.getPosition().x + (2 * hedgehog.getSize());
+      hedgehog.setPosition(hedgehog_position);
+    }
+  }
+  if(hedgehog.getPosition().y >= hedgehog.getSize())
+  {
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+      sf::Vector2f hedgehog_position = hedgehog.getPosition();
+      --hedgehog_position.y;
+      //hedgehog_position.y = hedgehog.getPosition().y - (2 * hedgehog.getSize());
+      hedgehog.setPosition(hedgehog_position);
+    }
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+  {
+    sf::Vector2f hedgehog_position = hedgehog.getPosition();
+    ++hedgehog_position.y;
+    //hedgehog_position.y = hedgehog.getPosition().y - (2 * hedgehog.getSize());
+    hedgehog.setPosition(hedgehog_position);
+  }
+}

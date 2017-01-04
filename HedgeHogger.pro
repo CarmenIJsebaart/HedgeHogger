@@ -6,7 +6,8 @@ CONFIG -= qt
 SOURCES += main.cpp \
     vehicle.cpp \
     hedgehog.cpp \
-    window.cpp
+    window.cpp \
+    vehicletype.cpp
 
 CONFIG += c++14
 QMAKE_CXX = g++-5
@@ -19,7 +20,8 @@ LIBS += -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 HEADERS += \
     vehicle.h \
     hedgehog.h \
-    window.h
+    window.h \
+    vehicletype.h
 
 
 # Debug and release mode

@@ -3,7 +3,9 @@
 
 #include <cassert>
 #include <SFML/Graphics.hpp>
+
 #include "hedgehog.h"
+#include "vehicletype.h"
 
 class Vehicle
 {
@@ -17,7 +19,7 @@ public:
   Vehicle(const sf::Vector2f &any_position, int length, int width, sf::Color color, float speed);
 
   sf::Color getColor() const noexcept { return color; }
-  int getLength() const {return length;}
+  int getLength() const { return length; }
   sf::Vector2f getPosition() const;
   sf::RectangleShape getShape();
   int getSpeed() const { return speed; }
@@ -30,7 +32,6 @@ public:
 };
 
 void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed);
-
-std::vector<Vehicle> create_vehicles(const float size) noexcept;
+std::vector<Vehicle> create_vehicles(const float size, const int window_width) noexcept;
 
 #endif // VEHICLE_H
