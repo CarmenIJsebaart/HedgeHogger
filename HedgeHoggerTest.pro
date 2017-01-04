@@ -4,16 +4,20 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main_test.cpp \
-    vehicle.cpp \
     hedgehog.cpp \
     hedgehog_test.cpp \
+    obstacle.cpp \
+    vehicle.cpp \
     vehicle_test.cpp \
+    vehicletype.cpp \
     window.cpp \
     window_test.cpp
 
 HEADERS += \
-    vehicle.h \
     hedgehog.h \
+    obstacle.h \
+    vehicle.h \
+    vehicletype.h \
     window.h
 
 # C++14
