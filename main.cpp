@@ -69,9 +69,19 @@ int main()
     {
       sf::Vector2f position = vehicle.getPosition();
       float position_x = position.x;
-      if(position_x >= window->getSize().x)
+      if(vehicle.getDirection() == true) //true -> drive to right
       {
-        vehicle.set_vehicle_left();
+        if(position_x >= window->getSize().x)
+        {
+          vehicle.set_vehicle_left();
+        }
+      }
+      else if(vehicle.getDirection() == false) //false -> drive to left
+      {
+        if(position_x <= -vehicle.getLength())
+        {
+          vehicle.set_vehicle_right(window->getSize().x);
+        }
       }
     }
 

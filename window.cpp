@@ -7,7 +7,8 @@ sf::RenderWindow * create_window(const int window_height, const int window_width
                            "HedgeHogger", sf::Style::Titlebar | sf::Style::Close);
 }
 
-void draw_on_window(sf::RenderWindow *window, Hedgehog hedgehog, std::vector<Vehicle> vehicles, sf::Text text, std::vector<Obstacle> obstacles)
+void draw_on_window(sf::RenderWindow *window, Hedgehog hedgehog, std::vector<Vehicle> vehicles,
+                    sf::Text text, std::vector<Obstacle> obstacles)
 {
   window->clear();
   for(auto &obstacle : obstacles)

@@ -43,7 +43,7 @@ void move(sf::RenderWindow *window, Hedgehog &hedgehog)
     {
       sf::Vector2f hedgehog_position = hedgehog.getPosition();
       //--hedgehog_position.x;
-      hedgehog_position.x = hedgehog.getPosition().x - (2 * hedgehog.getSize());
+      hedgehog_position.x = hedgehog.getPosition().x - (hedgehog.getSize());
       hedgehog.setPosition(hedgehog_position);
     }
   }
@@ -53,7 +53,7 @@ void move(sf::RenderWindow *window, Hedgehog &hedgehog)
     {
       sf::Vector2f hedgehog_position = hedgehog.getPosition();
       //++hedgehog_position.x;
-      hedgehog_position.x = hedgehog.getPosition().x + (2 * hedgehog.getSize());
+      hedgehog_position.x = hedgehog.getPosition().x + (hedgehog.getSize());
       hedgehog.setPosition(hedgehog_position);
     }
   }
@@ -63,7 +63,7 @@ void move(sf::RenderWindow *window, Hedgehog &hedgehog)
     {
       sf::Vector2f hedgehog_position = hedgehog.getPosition();
       //--hedgehog_position.y;
-      hedgehog_position.y = hedgehog.getPosition().y - (2 * hedgehog.getSize());
+      hedgehog_position.y = hedgehog.getPosition().y - (hedgehog.getSize());
       hedgehog.setPosition(hedgehog_position);
     }
   }
@@ -71,7 +71,7 @@ void move(sf::RenderWindow *window, Hedgehog &hedgehog)
   {
     sf::Vector2f hedgehog_position = hedgehog.getPosition();
     //++hedgehog_position.y;
-    hedgehog_position.y = hedgehog.getPosition().y + (2 * hedgehog.getSize());
+    hedgehog_position.y = hedgehog.getPosition().y + (hedgehog.getSize());
     hedgehog.setPosition(hedgehog_position);
   }
 }
