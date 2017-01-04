@@ -23,7 +23,7 @@ sf::Vector2f Hedgehog::getPosition() const noexcept
 
 void Hedgehog::setPosition(const sf::Vector2f &any_position)
 {
-  this->position = any_position;
+  position = any_position;
 }
 
 sf::CircleShape Hedgehog::getShape()

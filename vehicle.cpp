@@ -50,20 +50,20 @@ std::vector<Vehicle> create_vehicles(const float size, const int window_width) n
   //Create cars
   for(int i = 0; i <= 3; ++i)
   {
+    const int car_length = 50;
+    const int car_width = 25;
     int x = 100 + (i * 160);
     assert(100 + (i * 160) <= window_width);
-    Vehicle car(sf::Vector2f(x, 400), 50, 25, sf::Color::Yellow, 1.5);
+    Vehicle car(sf::Vector2f(x, 400), car_length, car_width, sf::Color::Yellow, 1.5);
     vehicle_vector.push_back(car);
   }
   assert(vehicle_vector.size() == 7);
-
   return vehicle_vector;
 }
 
 void Vehicle::drive()
 {
   position.x = position.x + speed;
-  this->position = position;
 }
 
 sf::Vector2f Vehicle::getPosition() const
@@ -73,7 +73,7 @@ sf::Vector2f Vehicle::getPosition() const
 
 void Vehicle::setPosition(const sf::Vector2f &any_position)
 {
-  this->position = any_position;
+  position = any_position;
 }
 
 sf::RectangleShape Vehicle::getShape()
@@ -88,5 +88,4 @@ sf::RectangleShape Vehicle::getShape()
 void Vehicle::set_vehicle_left()
 {
   position.x = -length;
-  this->position = position;
 }

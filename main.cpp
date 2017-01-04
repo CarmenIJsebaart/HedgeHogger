@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "hedgehog.h"
+#include "obstacle.h"
 #include "vehicle.h"
 #include "window.h"
 
@@ -11,6 +12,7 @@ int main()
   sf::RenderWindow * window = create_window();
   Hedgehog hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
   std::vector<Vehicle> vehicles = create_vehicles(hedgehog.getSize(), window->getSize().x);
+  std::vector<Obstacle> obstacles = create_obstacles(window->getSize().x);
 
   sf::Clock clock;
   sf::Font font;
@@ -68,14 +70,6 @@ int main()
       }
     }
 
-    window->clear();
-    window->draw(hedgehog.getShape());
-    for(auto &vehicle : vehicles)
-    {
-      window->draw(vehicle.getShape());
-    }
-
-    window->draw(text);
-    window->display();
+    draw_on_window(window, hedgehog, vehicles, text, obstacles);
   }
 }

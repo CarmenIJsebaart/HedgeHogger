@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     vehicle.cpp \
     hedgehog.cpp \
     window.cpp \
-    vehicletype.cpp
+    vehicletype.cpp \
+    obstacle.cpp
 
 CONFIG += c++14
 QMAKE_CXX = g++-5
@@ -21,7 +22,8 @@ HEADERS += \
     vehicle.h \
     hedgehog.h \
     window.h \
-    vehicletype.h
+    vehicletype.h \
+    obstacle.h
 
 
 # Debug and release mode
