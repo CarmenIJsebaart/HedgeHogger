@@ -4,6 +4,31 @@
 #include <SFML/Graphics.hpp>
 #include "vehicle.h"
 
+void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed)
+{
+  int y_min_vehicle = vehicle.getPosition().y;
+  int y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
+  int y_min_hedgehog = hedgehog.getPosition().y;
+  int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
+
+  int x_min_vehicle = vehicle.getPosition().x;
+  int x_max_vehicle = vehicle.getPosition().x + vehicle.getLength();
+  int x_min_hedgehog = hedgehog.getPosition().x;
+  int x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
+
+  if((y_min_hedgehog > y_min_vehicle && y_min_hedgehog < y_max_vehicle) ||
+      (y_max_hedgehog > y_min_vehicle && y_max_hedgehog < y_max_vehicle) ||
+      (y_min_hedgehog <= y_min_vehicle && y_max_hedgehog >= y_max_vehicle))
+  {
+    if((x_min_hedgehog > x_min_vehicle && x_min_hedgehog < x_max_vehicle) ||
+        (x_max_hedgehog > x_min_vehicle && x_max_hedgehog < x_max_vehicle) ||
+        (x_min_hedgehog <= x_min_vehicle && x_max_hedgehog >= x_max_vehicle))
+    {
+      has_crashed = true;
+    }
+  }
+}
+
 int main()
 {
   const int window_height = 600;
@@ -53,7 +78,8 @@ int main()
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
             {
               sf::Vector2f hedgehog_position = hedgehog.getPosition();
-              hedgehog_position.x = hedgehog.getPosition().x - (2 * hedgehog.getSize());
+              --hedgehog_position.x;
+              //hedgehog_position.x = hedgehog.getPosition().x - (2 * hedgehog.getSize());
               hedgehog.setPosition(hedgehog_position);
             }
           }
@@ -62,7 +88,8 @@ int main()
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             {
               sf::Vector2f hedgehog_position = hedgehog.getPosition();
-              hedgehog_position.x = hedgehog.getPosition().x + (2 * hedgehog.getSize());
+              ++hedgehog_position.x;
+              //hedgehog_position.x = hedgehog.getPosition().x + (2 * hedgehog.getSize());
               hedgehog.setPosition(hedgehog_position);
             }
           }
@@ -110,26 +137,11 @@ int main()
     text.setColor(sf::Color::White);
     bool has_crashed = false;
 
-    for(auto &vehicle : vehicle_vector)
-    {
-      //int x_min_vehicle = vehicle.getPosition().x;
-      //int x_max_vehicle = vehicle.getPosition().x + vehicle.get_length();
-      int y_min_vehicle = vehicle.getPosition().y;
-      int y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
-
-      //int x_min_hedgehog = hedgehog.getPosition().x - (hedgehog.getSize() / 2);
-      //int x_max_hedgehog = hedgehog.getPosition().x + (hedgehog.getSize() / 2);
-      int y_min_hedgehog = hedgehog.getPosition().y - (0 * hedgehog.getSize());
-      int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
-
-      if((y_min_hedgehog > y_min_vehicle && y_min_hedgehog < y_max_vehicle) ||
-         (y_max_hedgehog > y_min_vehicle && y_max_hedgehog < y_max_vehicle))
-      {
-        has_crashed = true;
-      }
-    }
-
-    if (has_crashed) { text.setString("crash"); }
+   for(auto &vehicle : vehicle_vector)
+   {
+      check_collision(vehicle, hedgehog, has_crashed);
+      if (has_crashed) { text.setString("crash"); }
+   }
 
     truck1.set_vehicle_left();
     truck2.set_vehicle_left();
