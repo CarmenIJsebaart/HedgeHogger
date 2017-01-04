@@ -7,11 +7,14 @@ SOURCES += main_test.cpp \
     vehicle.cpp \
     hedgehog.cpp \
     hedgehog_test.cpp \
-    vehicle_test.cpp
+    vehicle_test.cpp \
+    window.cpp \
+    window_test.cpp
 
 HEADERS += \
     vehicle.h \
-    hedgehog.h
+    hedgehog.h \
+    window.h
 
 # C++14
 CONFIG += c++14

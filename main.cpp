@@ -9,9 +9,7 @@
 int main()
 {
   sf::RenderWindow * window = create_window();
-
   Hedgehog hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
-
   std::vector<Vehicle> vehicles = create_vehicles(hedgehog.getSize());
 
   sf::Clock clock;
@@ -93,20 +91,25 @@ int main()
 
     for(auto &vehicle : vehicles)
     {
-       check_collision(vehicle, hedgehog, has_crashed);
-       if (has_crashed) { text.setString("crash"); }
+      check_collision(vehicle, hedgehog, has_crashed);
+      if (has_crashed) { text.setString("crash"); }
     }
 
     for(auto &vehicle : vehicles)
     {
-       vehicle.set_vehicle_left();
+      sf::Vector2f position = vehicle.getPosition();
+      float position_x = position.x;
+      if(position_x >= 600)
+      {
+        vehicle.set_vehicle_left();
+      }
     }
 
     window->clear();
     window->draw(hedgehog.getShape());
     for(auto &vehicle : vehicles)
     {
-       window->draw(vehicle.getShape());
+      window->draw(vehicle.getShape());
     }
 
     window->draw(text);

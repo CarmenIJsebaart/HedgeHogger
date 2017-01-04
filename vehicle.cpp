@@ -37,25 +37,25 @@ void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed)
 
 std::vector<Vehicle> create_vehicles(const float size) noexcept
 {
-    Vehicle truck1(sf::Vector2f(50 , 450), 100, 2 * size, sf::Color::Blue, 1);
-    Vehicle truck2(sf::Vector2f(283, 450), 100, 2 * size, sf::Color::Blue, 1);
-    Vehicle truck3(sf::Vector2f(516, 450), 100, 2 * size, sf::Color::Blue, 1);
-    Vehicle car1(sf::Vector2f(100, 400), 50, 25, sf::Color::Yellow, 1.5);
-    Vehicle car2(sf::Vector2f(262, 400), 50, 25, sf::Color::Yellow, 1.5);
-    Vehicle car3(sf::Vector2f(424, 400), 50, 25, sf::Color::Yellow, 1.5);
-    Vehicle car4(sf::Vector2f(586, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle truck1(sf::Vector2f(50 , 450), 100, 2 * size, sf::Color::Blue, 1);
+  Vehicle truck2(sf::Vector2f(283, 450), 100, 2 * size, sf::Color::Blue, 1);
+  Vehicle truck3(sf::Vector2f(516, 450), 100, 2 * size, sf::Color::Blue, 1);
+  Vehicle car1(sf::Vector2f(100, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle car2(sf::Vector2f(262, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle car3(sf::Vector2f(424, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Vehicle car4(sf::Vector2f(586, 400), 50, 25, sf::Color::Yellow, 1.5);
 
-    std::vector<Vehicle> vehicle_vector;
-    vehicle_vector.push_back(truck1);
-    vehicle_vector.push_back(truck2);
-    vehicle_vector.push_back(truck3);
-    vehicle_vector.push_back(car1);
-    vehicle_vector.push_back(car2);
-    vehicle_vector.push_back(car3);
-    vehicle_vector.push_back(car4);
-    assert(vehicle_vector.size() == 7);
+  std::vector<Vehicle> vehicle_vector;
+  vehicle_vector.push_back(truck1);
+  vehicle_vector.push_back(truck2);
+  vehicle_vector.push_back(truck3);
+  vehicle_vector.push_back(car1);
+  vehicle_vector.push_back(car2);
+  vehicle_vector.push_back(car3);
+  vehicle_vector.push_back(car4);
+  assert(vehicle_vector.size() == 7);
 
-    return vehicle_vector;
+  return vehicle_vector;
 }
 
 void Vehicle::drive()
@@ -85,9 +85,6 @@ sf::RectangleShape Vehicle::getShape()
 
 void Vehicle::set_vehicle_left()
 {
-  if(position.x >= 600)
-  {
-    position.x = -length;
-    this->position = position;
-  }
+  position.x = -length;
+  this->position = position;
 }
