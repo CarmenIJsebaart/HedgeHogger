@@ -18,6 +18,8 @@ int main()
   sf::Font font;
   font.loadFromFile("arial.ttf");
 
+  bool game_over_screen = false;
+
   while(window->isOpen())
   {
     sf::Event event;
@@ -52,39 +54,22 @@ int main()
     text.setFont(font);
     text.setPosition(100,100);
     text.setColor(sf::Color::White);
+
     bool has_crashed = false;
 
     for(auto &vehicle : vehicles)
     {
       check_collision(vehicle, hedgehog, has_crashed);
-      if (has_crashed) { text.setString("crash"); }
+      if (has_crashed)
+      {
+        game_over_screen = true;
+      }
     }
-    for(auto &obstacle : obstacles)
-    {
-      check_collision(obstacle, hedgehog, has_crashed);
-      if (has_crashed) { text.setString("crash"); }
-    }
-
     for(auto &vehicle : vehicles)
     {
-      sf::Vector2f position = vehicle.getPosition();
-      float position_x = position.x;
-      if(vehicle.getDirection() == true) //true -> drive to right
-      {
-        if(position_x >= window->getSize().x)
-        {
-          vehicle.set_vehicle_left();
-        }
-      }
-      else if(vehicle.getDirection() == false) //false -> drive to left
-      {
-        if(position_x <= -vehicle.getLength())
-        {
-          vehicle.set_vehicle_right(window->getSize().x);
-        }
-      }
+      check_direction(window, vehicle);
     }
 
-    draw_on_window(window, hedgehog, vehicles, text, obstacles);
+    draw_on_window(window, hedgehog, vehicles, text, obstacles, game_over_screen);
   }
 }

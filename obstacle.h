@@ -21,7 +21,7 @@ public:
   int getWidth() const { return width; }
 };
 
-void check_collision(Obstacle obstacle, Hedgehog hedgehog, bool &has_crashed);
+void check_collision(Obstacle obstacle, Hedgehog hedgehog, bool &is_touched);
 std::vector<Obstacle> create_obstacles(const int window_width, const int hedgehog_size) noexcept;
 
 #endif // OBSTACLE_H

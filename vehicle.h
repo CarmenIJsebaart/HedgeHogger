@@ -35,6 +35,7 @@ public:
 };
 
 void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed);
+void check_direction(sf::RenderWindow * window, Vehicle &vehicle);
 std::vector<Vehicle> create_vehicles(const int hedgehog_size, const int window_width) noexcept;
 
 #endif // VEHICLE_H

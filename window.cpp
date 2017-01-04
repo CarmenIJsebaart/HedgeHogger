@@ -8,18 +8,28 @@ sf::RenderWindow * create_window(const int window_height, const int window_width
 }
 
 void draw_on_window(sf::RenderWindow *window, Hedgehog hedgehog, std::vector<Vehicle> vehicles,
-                    sf::Text text, std::vector<Obstacle> obstacles)
+                    sf::Text text, std::vector<Obstacle> obstacles, bool game_over_screen)
 {
-  window->clear();
-  for(auto &obstacle : obstacles)
+  //if(game_over_screen == false)
   {
-    window->draw(obstacle.getShape());
+    window->clear();
+    for(auto &obstacle : obstacles)
+    {
+      window->draw(obstacle.getShape());
+    }
+    window->draw(hedgehog.getShape());
+    for(auto &vehicle : vehicles)
+    {
+      window->draw(vehicle.getShape());
+    }
+    window->display();
   }
-  window->draw(hedgehog.getShape());
-  for(auto &vehicle : vehicles)
+  /*if(game_over_screen == true)
   {
-    window->draw(vehicle.getShape());
-  }
-  window->draw(text);
-  window->display();
+    window->clear(sf::Color::Black);
+    text.setString("Game Over");
+    text.setCharacterSize(80);
+    window->draw(text);
+    window->display();
+  }*/
 }

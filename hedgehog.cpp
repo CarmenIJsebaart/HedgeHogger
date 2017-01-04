@@ -35,11 +35,11 @@ sf::CircleShape Hedgehog::getShape()
   return hedgehog_shape;
 }
 
-void move(sf::RenderWindow *window, Hedgehog &hedgehog)
+void move(sf::RenderWindow * window, Hedgehog &hedgehog)
 {
-  if(hedgehog.getPosition().x >= (2 * hedgehog.getSize()))
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
   {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if(hedgehog.getPosition().x >= (2 * hedgehog.getSize()))
     {
       sf::Vector2f hedgehog_position = hedgehog.getPosition();
       //--hedgehog_position.x;
@@ -47,9 +47,10 @@ void move(sf::RenderWindow *window, Hedgehog &hedgehog)
       hedgehog.setPosition(hedgehog_position);
     }
   }
-  if(hedgehog.getPosition().x <= (window->getSize().x - (4 * hedgehog.getSize())))
+
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
   {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if(hedgehog.getPosition().x <= (window->getSize().x - (4 * hedgehog.getSize())))
     {
       sf::Vector2f hedgehog_position = hedgehog.getPosition();
       //++hedgehog_position.x;
@@ -57,9 +58,9 @@ void move(sf::RenderWindow *window, Hedgehog &hedgehog)
       hedgehog.setPosition(hedgehog_position);
     }
   }
-  if(hedgehog.getPosition().y >= hedgehog.getSize())
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
   {
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if(hedgehog.getPosition().y >= hedgehog.getSize())
     {
       sf::Vector2f hedgehog_position = hedgehog.getPosition();
       //--hedgehog_position.y;
@@ -69,9 +70,12 @@ void move(sf::RenderWindow *window, Hedgehog &hedgehog)
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
   {
-    sf::Vector2f hedgehog_position = hedgehog.getPosition();
-    //++hedgehog_position.y;
-    hedgehog_position.y = hedgehog.getPosition().y + (hedgehog.getSize());
-    hedgehog.setPosition(hedgehog_position);
+    if(hedgehog.getPosition().y + (2 * hedgehog.getSize()) < window->getSize().y)
+    {
+      sf::Vector2f hedgehog_position = hedgehog.getPosition();
+      //++hedgehog_position.y;
+      hedgehog_position.y = hedgehog.getPosition().y + (hedgehog.getSize());
+      hedgehog.setPosition(hedgehog_position);
+    }
   }
 }

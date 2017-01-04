@@ -8,7 +8,7 @@ Obstacle::Obstacle(const sf::Vector2f position, int length, int width, sf::Color
 {
 }
 
-void check_collision(Obstacle obstacle, Hedgehog hedgehog, bool &has_crashed)
+/*void check_collision(Obstacle obstacle, Hedgehog hedgehog, bool &is_touched)
 {
   int y_min_obstacle = obstacle.getPosition().y;
   int y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
@@ -20,18 +20,11 @@ void check_collision(Obstacle obstacle, Hedgehog hedgehog, bool &has_crashed)
   int x_min_hedgehog = hedgehog.getPosition().x;
   int x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
 
-  if((y_min_hedgehog > y_min_obstacle && y_min_hedgehog < y_max_obstacle) ||
-     (y_max_hedgehog > y_min_obstacle && y_max_hedgehog < y_max_obstacle) ||
-     (y_min_hedgehog <= y_min_obstacle && y_max_hedgehog >= y_max_obstacle))
+  if()
   {
-    if((x_min_hedgehog > x_min_obstacle && x_min_hedgehog < x_max_obstacle) ||
-       (x_max_hedgehog > x_min_obstacle && x_max_hedgehog < x_max_obstacle) ||
-       (x_min_hedgehog <= x_min_obstacle && x_max_hedgehog >= x_max_obstacle))
-    {
-      has_crashed = true;
-    }
+
   }
-}
+}*/
 
 std::vector<Obstacle> create_obstacles(const int window_width, const int hedgehog_size) noexcept
 {
