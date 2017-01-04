@@ -32,6 +32,6 @@ public:
 };
 
 void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed);
-std::vector<Vehicle> create_vehicles(const float size, const int window_width) noexcept;
+std::vector<Vehicle> create_vehicles(const int hedgehog_size, const int window_width) noexcept;
 
 #endif // VEHICLE_H

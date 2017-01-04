@@ -12,7 +12,7 @@ int main()
   sf::RenderWindow * window = create_window();
   Hedgehog hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
   std::vector<Vehicle> vehicles = create_vehicles(hedgehog.getSize(), window->getSize().x);
-  std::vector<Obstacle> obstacles = create_obstacles(window->getSize().x);
+  std::vector<Obstacle> obstacles = create_obstacles(window->getSize().x, hedgehog.getSize());
 
   sf::Clock clock;
   sf::Font font;
@@ -59,12 +59,17 @@ int main()
       check_collision(vehicle, hedgehog, has_crashed);
       if (has_crashed) { text.setString("crash"); }
     }
+    for(auto &obstacle : obstacles)
+    {
+      check_collision(obstacle, hedgehog, has_crashed);
+      if (has_crashed) { text.setString("crash"); }
+    }
 
     for(auto &vehicle : vehicles)
     {
       sf::Vector2f position = vehicle.getPosition();
       float position_x = position.x;
-      if(position_x >= 600)
+      if(position_x >= window->getSize().x)
       {
         vehicle.set_vehicle_left();
       }

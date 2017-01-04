@@ -19,6 +19,6 @@ public:
 };
 
 Hedgehog create_hedgehog(const int window_height, const int window_width);
-void move(sf::RenderWindow *window, Hedgehog &hedgehog);
+void move(sf::RenderWindow * window, Hedgehog &hedgehog);
 
 #endif // HEDGEHOG_H

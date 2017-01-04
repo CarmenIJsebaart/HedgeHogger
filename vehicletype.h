@@ -3,5 +3,4 @@
 
 enum class VehicleType{ Truck, Car };
 
-
 #endif // VEHICLETYPE_H

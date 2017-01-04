@@ -1,4 +1,3 @@
-#include "hedgehog.h"
 #include "vehicle.h"
 
 Vehicle::Vehicle(const sf::Vector2f &any_position, int length, int width, sf::Color color, float speed)
@@ -35,30 +34,40 @@ void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed)
   }
 }
 
-std::vector<Vehicle> create_vehicles(const float size, const int window_width) noexcept
+std::vector<Vehicle> create_vehicles(const int hedgehog_size, const int window_width) noexcept
 {
-  std::vector<Vehicle> vehicle_vector;
+  std::vector<Vehicle> vehicles;
+  //Create cars
+  for(int i = 0; i <= 3; ++i)
+  {
+    int x = 100 + (i * 160);
+    assert(100 + (i * 160) <= window_width);
+    int y = 375;
+    assert(y % hedgehog_size == 0);
+
+    const int car_length = 50;
+    const int car_width = 30;
+    assert(car_width % hedgehog_size == 0);
+    assert(100 + (i * 160) <= window_width);
+
+    Vehicle car(sf::Vector2f(x, y), car_length, car_width, sf::Color::Yellow, 1.5);
+    vehicles.push_back(car);
+  }
+
   //Create trucks
   for(int i = 0; i <= 2; ++i)
   {
     int x = 50 + (i * 240);
     assert(50 + (i * 240) <= window_width);
-    Vehicle truck(sf::Vector2f(x , 450), 100, 2 * size, sf::Color::Blue, 1);
-    vehicle_vector.push_back(truck);
+    int y = 450;
+    assert(y % hedgehog_size == 0);
+
+    Vehicle truck(sf::Vector2f(x , y), 100, 2 * hedgehog_size, sf::Color::Blue, 1);
+    vehicles.push_back(truck);
   }
 
-  //Create cars
-  for(int i = 0; i <= 3; ++i)
-  {
-    const int car_length = 50;
-    const int car_width = 25;
-    int x = 100 + (i * 160);
-    assert(100 + (i * 160) <= window_width);
-    Vehicle car(sf::Vector2f(x, 400), car_length, car_width, sf::Color::Yellow, 1.5);
-    vehicle_vector.push_back(car);
-  }
-  assert(vehicle_vector.size() == 7);
-  return vehicle_vector;
+  assert(vehicles.size() == 7);
+  return vehicles;
 }
 
 void Vehicle::drive()
