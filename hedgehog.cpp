@@ -7,6 +7,15 @@ Hedgehog::Hedgehog(const sf::Vector2f &any_position, float size, sf::Color color
 {
 }
 
+Hedgehog create_hedgehog(const int window_height, const int window_width)
+{
+  const float size = 15.0;
+  Hedgehog hedgehog(sf::Vector2f((window_width / 2) - size,
+                                  window_height - (size * 2)), size, sf::Color::Red);
+
+  return hedgehog;
+}
+
 sf::Vector2f Hedgehog::getPosition() const noexcept
 {
   return position;

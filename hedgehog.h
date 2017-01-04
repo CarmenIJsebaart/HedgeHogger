@@ -18,5 +18,5 @@ public:
   float getSize() const noexcept { return size; }
 };
 
-
+Hedgehog create_hedgehog(const int window_height, const int window_width);
 #endif // HEDGEHOG_H

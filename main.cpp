@@ -1,76 +1,33 @@
 #include <cassert>
-#include "hedgehog.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
+#include "hedgehog.h"
 #include "vehicle.h"
-
-void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed)
-{
-  int y_min_vehicle = vehicle.getPosition().y;
-  int y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
-  int y_min_hedgehog = hedgehog.getPosition().y;
-  int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
-
-  int x_min_vehicle = vehicle.getPosition().x;
-  int x_max_vehicle = vehicle.getPosition().x + vehicle.getLength();
-  int x_min_hedgehog = hedgehog.getPosition().x;
-  int x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
-
-  if((y_min_hedgehog > y_min_vehicle && y_min_hedgehog < y_max_vehicle) ||
-      (y_max_hedgehog > y_min_vehicle && y_max_hedgehog < y_max_vehicle) ||
-      (y_min_hedgehog <= y_min_vehicle && y_max_hedgehog >= y_max_vehicle))
-  {
-    if((x_min_hedgehog > x_min_vehicle && x_min_hedgehog < x_max_vehicle) ||
-        (x_max_hedgehog > x_min_vehicle && x_max_hedgehog < x_max_vehicle) ||
-        (x_min_hedgehog <= x_min_vehicle && x_max_hedgehog >= x_max_vehicle))
-    {
-      has_crashed = true;
-    }
-  }
-}
+#include "window.h"
 
 int main()
 {
-  const int window_height = 600;
-  const int window_width = 600;
-  sf::RenderWindow window(sf::VideoMode(window_width, window_height),
-                          "HedgeHogger", sf::Style::Titlebar | sf::Style::Close);
+  sf::RenderWindow * window = create_window();
 
-  const float size = 15.0;
-  Hedgehog hedgehog(sf::Vector2f((window_width / 2) - size,
-                                  window_height - (size * 2)), size, sf::Color::Red);
-  Vehicle truck1(sf::Vector2f(50 , 450), 100, 2 * size, sf::Color::Blue, 1);
-  Vehicle truck2(sf::Vector2f(283, 450), 100, 2 * size, sf::Color::Blue, 1);
-  Vehicle truck3(sf::Vector2f(516, 450), 100, 2 * size, sf::Color::Blue, 1);
-  Vehicle car1(sf::Vector2f(100, 400), 50, 25, sf::Color::Yellow, 1.5);
-  Vehicle car2(sf::Vector2f(262, 400), 50, 25, sf::Color::Yellow, 1.5);
-  Vehicle car3(sf::Vector2f(424, 400), 50, 25, sf::Color::Yellow, 1.5);
-  Vehicle car4(sf::Vector2f(586, 400), 50, 25, sf::Color::Yellow, 1.5);
+  Hedgehog hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
 
-  std::vector<Vehicle> vehicle_vector;
-  vehicle_vector.push_back(truck1);
-  vehicle_vector.push_back(truck2);
-  vehicle_vector.push_back(truck3);
-  vehicle_vector.push_back(car1);
-  vehicle_vector.push_back(car2);
-  vehicle_vector.push_back(car3);
-  vehicle_vector.push_back(car4);
-  assert(vehicle_vector.size() == 7);
+  std::vector<Vehicle> vehicles = create_vehicles(hedgehog.getSize());
 
   sf::Clock clock;
   sf::Font font;
   font.loadFromFile("arial.ttf");
 
-  while(window.isOpen())
+  while(window->isOpen())
   {
     sf::Event event;
 
-    while(window.pollEvent(event))
+    while(window->pollEvent(event))
     {
       switch(event.type)
       {
         case sf::Event::Closed:
-          window.close();
+          window->close();
           break;
         case sf::Event::KeyPressed:
           if(hedgehog.getPosition().x >= (2 * hedgehog.getSize()))
@@ -83,7 +40,7 @@ int main()
               hedgehog.setPosition(hedgehog_position);
             }
           }
-          if(hedgehog.getPosition().x <= (window_width - (4 * hedgehog.getSize())))
+          if(hedgehog.getPosition().x <= (window->getSize().x - (4 * hedgehog.getSize())))
           {
             if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
             {
@@ -121,13 +78,10 @@ int main()
 
     if(clock.getElapsedTime().asMilliseconds() >= update_time)
     {
-      truck1.drive();
-      truck2.drive();
-      truck3.drive();
-      car1.drive();
-      car2.drive();
-      car3.drive();
-      car4.drive();
+      for(auto &vehicle : vehicles)
+      {
+         vehicle.drive();
+      }
       clock.restart();
     }
 
@@ -137,30 +91,25 @@ int main()
     text.setColor(sf::Color::White);
     bool has_crashed = false;
 
-   for(auto &vehicle : vehicle_vector)
-   {
-      check_collision(vehicle, hedgehog, has_crashed);
-      if (has_crashed) { text.setString("crash"); }
-   }
+    for(auto &vehicle : vehicles)
+    {
+       check_collision(vehicle, hedgehog, has_crashed);
+       if (has_crashed) { text.setString("crash"); }
+    }
 
-    truck1.set_vehicle_left();
-    truck2.set_vehicle_left();
-    truck3.set_vehicle_left();
-    car1.set_vehicle_left();
-    car2.set_vehicle_left();
-    car3.set_vehicle_left();
-    car4.set_vehicle_left();
+    for(auto &vehicle : vehicles)
+    {
+       vehicle.set_vehicle_left();
+    }
 
-    window.clear();
-    window.draw(hedgehog.getShape());
-    window.draw(truck1.getShape());
-    window.draw(truck2.getShape());
-    window.draw(truck3.getShape());
-    window.draw(car1.getShape());
-    window.draw(car2.getShape());
-    window.draw(car3.getShape());
-    window.draw(car4.getShape());
-    window.draw(text);
-    window.display();
+    window->clear();
+    window->draw(hedgehog.getShape());
+    for(auto &vehicle : vehicles)
+    {
+       window->draw(vehicle.getShape());
+    }
+
+    window->draw(text);
+    window->display();
   }
 }
