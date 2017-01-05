@@ -6,7 +6,8 @@ sf::RenderWindow * create_window(
 {
   return new sf::RenderWindow(
              sf::VideoMode(window_width, window_height),
-                           "HedgeHogger", sf::Style::Titlebar | sf::Style::Close);
+             "HedgeHogger",
+              sf::Style::Titlebar | sf::Style::Close);
 }
 
 void draw_on_window(

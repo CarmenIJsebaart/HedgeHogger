@@ -26,28 +26,6 @@ void append(
   }
 }
 
-bool are_colliding(
-  Vehicle vehicle,
-  Hedgehog hedgehog)
-{
-  const auto y_min_vehicle = vehicle.getPosition().y;
-  const auto y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
-  const auto y_min_hedgehog = hedgehog.getPosition().y;
-  const auto y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
-
-  const auto  x_min_vehicle = vehicle.getPosition().x;
-  const auto  x_max_vehicle = vehicle.getPosition().x + vehicle.getLength();
-  const auto  x_min_hedgehog = hedgehog.getPosition().x;
-  const auto  x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
-
-  return (((y_min_hedgehog > y_min_vehicle && y_min_hedgehog < y_max_vehicle) ||
-      (y_max_hedgehog > y_min_vehicle && y_max_hedgehog < y_max_vehicle) ||
-      (y_min_hedgehog <= y_min_vehicle && y_max_hedgehog >= y_max_vehicle)) &&
-     ((x_min_hedgehog > x_min_vehicle && x_min_hedgehog < x_max_vehicle) ||
-      (x_max_hedgehog > x_min_vehicle && x_max_hedgehog < x_max_vehicle) ||
-      (x_min_hedgehog <= x_min_vehicle && x_max_hedgehog >= x_max_vehicle)));
-}
-
 std::vector<Vehicle> create_vehicles(
   const int hedgehog_size,
   const int window_width) noexcept

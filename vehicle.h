@@ -4,8 +4,6 @@
 #include <cassert>
 #include <SFML/Graphics.hpp>
 
-#include "hedgehog.h"
-
 class Vehicle
 {
   bool direction;
@@ -34,7 +32,6 @@ public:
 };
 
 void append(const std::vector<Vehicle>& add_these_vehicles, std::vector<Vehicle>& add_vehicles_here);
-bool are_colliding(Vehicle vehicle, Hedgehog hedgehog);
 std::vector<Vehicle> create_vehicles(const int hedgehog_size, const int window_width) noexcept;
 std::vector<Vehicle> create_bikes_lower_lane(const int window_width, const int hedgehog_size);
 std::vector<Vehicle> create_bikes_upper_lane(const int window_width, const int hedgehog_size);

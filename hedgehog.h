@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "obstacle.h"
+#include "vehicle.h"
 
 class Hedgehog
 {
@@ -20,8 +21,11 @@ public:
   float getSize() const noexcept { return size; }
 };
 
+bool are_colliding(Vehicle vehicles, Hedgehog hedgehog);
 Hedgehog create_hedgehog(const int window_height, const int window_width);
 void move(sf::RenderWindow * window, Hedgehog &hedgehog, std::vector<Obstacle> obstacles);
+bool has_collision_x_direction(Hedgehog hedgehog, Vehicle vehicle);
+bool has_collision_y_direction(Hedgehog hedgehog, Vehicle vehicle);
 bool is_touching_obstacle_bottom(std::vector<Obstacle> obstacles, Hedgehog hedgehog, const int hedgehog_size);
 bool is_touching_obstacle_left(std::vector<Obstacle> obstacles, Hedgehog hedgehog, const int hedgehog_size);
 bool is_touching_obstacle_right(std::vector<Obstacle> obstacles, Hedgehog hedgehog, const int hedgehog_size);
