@@ -32,7 +32,7 @@ int main()
 
     while(window->pollEvent(event))
     {
-      switch(event.type)
+      switch(event.type) //!OCLINT I perhaps want to extend this in the future
       {
         case sf::Event::Closed:
           window->close();

@@ -16,166 +16,50 @@ Vehicle::Vehicle(
 {
 }
 
+void append(
+  const std::vector<Vehicle>& add_these_vehicles,
+  std::vector<Vehicle>& add_vehicles_here)
+{
+  for (const Vehicle& veh: add_these_vehicles)
+  {
+    add_vehicles_here.push_back(veh);
+  }
+}
+
 bool are_colliding(
   Vehicle vehicle,
   Hedgehog hedgehog)
 {
-  int y_min_vehicle = vehicle.getPosition().y;
-  int y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
-  int y_min_hedgehog = hedgehog.getPosition().y;
-  int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
+  const auto y_min_vehicle = vehicle.getPosition().y;
+  const auto y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
+  const auto y_min_hedgehog = hedgehog.getPosition().y;
+  const auto y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
 
-  int x_min_vehicle = vehicle.getPosition().x;
-  int x_max_vehicle = vehicle.getPosition().x + vehicle.getLength();
-  int x_min_hedgehog = hedgehog.getPosition().x;
-  int x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
+  const auto  x_min_vehicle = vehicle.getPosition().x;
+  const auto  x_max_vehicle = vehicle.getPosition().x + vehicle.getLength();
+  const auto  x_min_hedgehog = hedgehog.getPosition().x;
+  const auto  x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
 
-  if(((y_min_hedgehog > y_min_vehicle && y_min_hedgehog < y_max_vehicle) ||
+  return (((y_min_hedgehog > y_min_vehicle && y_min_hedgehog < y_max_vehicle) ||
       (y_max_hedgehog > y_min_vehicle && y_max_hedgehog < y_max_vehicle) ||
       (y_min_hedgehog <= y_min_vehicle && y_max_hedgehog >= y_max_vehicle)) &&
      ((x_min_hedgehog > x_min_vehicle && x_min_hedgehog < x_max_vehicle) ||
       (x_max_hedgehog > x_min_vehicle && x_max_hedgehog < x_max_vehicle) ||
-      (x_min_hedgehog <= x_min_vehicle && x_max_hedgehog >= x_max_vehicle)))
-  {
-      return true;
-  }
-  return false;
+      (x_min_hedgehog <= x_min_vehicle && x_max_hedgehog >= x_max_vehicle)));
 }
 
-void keep_vehicle_in_window(
-  sf::RenderWindow * window,
-  Vehicle &vehicle)
-{
-  sf::Vector2f position = vehicle.getPosition();
-  float position_x = position.x;
-  if(vehicle.getDirection() == true) //true -> drive to right
-  {
-    if(position_x >= window->getSize().x)
-    {
-      vehicle.set_vehicle_left();
-    }
-  }
-  else if(vehicle.getDirection() == false) //false -> drive to left
-  {
-    if(position_x <= -vehicle.getLength())
-    {
-      vehicle.set_vehicle_right(window->getSize().x);
-    }
-  }
-}
 std::vector<Vehicle> create_vehicles(
   const int hedgehog_size,
   const int window_width) noexcept
 {
   std::vector<Vehicle> vehicles;
-  //Create bikes lower lane
-  for(int i = 0; i <= 5; ++i)
-  {
-    int x_vehicle = 50 + (i * 110);
-    assert(50 + (i * 110) <= window_width);
-    int y_vehicle = 510;
-    assert(y_vehicle % hedgehog_size == 0);
-
-    const double bike_speed = 0.8;
-
-    Vehicle bike(sf::Vector2f(x_vehicle , y_vehicle), 2 * hedgehog_size, 2 * hedgehog_size, sf::Color::Cyan, bike_speed, true); //true -> drive to right
-    vehicles.push_back(bike);
-  }
-
-  //Create bikes upper lane
-  for(int i = 0; i <= 5; ++i)
-  {
-    int x_vehicle = 50 + (i * 110);
-    assert(50 + (i * 110) <= window_width);
-    int y_vehicle = 120;
-    assert(y_vehicle % hedgehog_size == 0);
-
-    const double bike_speed = 0.8;
-
-    Vehicle bike(sf::Vector2f(x_vehicle , y_vehicle), 2 * hedgehog_size, 2 * hedgehog_size, sf::Color::Cyan, bike_speed, false); //false -> drive to left
-    vehicles.push_back(bike);
-  }
-
-  //Create cars lower lane
-  for(int i = 0; i <= 3; ++i)
-  {
-    int x_vehicle = 100 + (i * 160);
-    assert(100 + (i * 160) <= window_width);
-    int y_vehicle = 375;
-    assert(y_vehicle % hedgehog_size == 0);
-
-    const int car_length = 50;
-    const int car_width = 30;
-    assert(car_width % hedgehog_size == 0);
-    assert(100 + (i * 160) <= window_width);
-
-    const double car_speed = 1.8;
-
-    Vehicle car(sf::Vector2f(x_vehicle, y_vehicle), car_length, car_width, sf::Color::Yellow, car_speed, true); //true -> drive to right
-    vehicles.push_back(car);
-  }
-
-  //Create cars upper lane
-  for(int i = 0; i <= 3; ++i)
-  {
-    int x_vehicle = 100 + (i * 160);
-    assert(100 + (i * 160) <= window_width);
-    int y_vehicle = 240;
-    assert(y_vehicle % hedgehog_size == 0);
-
-    const int car_length = 50;
-    const int car_width = 30;
-    assert(car_width % hedgehog_size == 0);
-    assert(100 + (i * 160) <= window_width);
-
-    const double car_speed = 1.8;
-
-    Vehicle car(sf::Vector2f(x_vehicle, y_vehicle), car_length, car_width, sf::Color::Yellow, car_speed, false); //false -> drive to left
-    vehicles.push_back(car);
-  }
-
-  //Create trucks lower lane
-  for(int i = 0; i <= 2; ++i)
-  {
-    int x_vehicle = 50 + (i * 240);
-    assert(50 + (i * 240) <= window_width);
-    int y_vehicle = 450;
-    assert(y_vehicle % hedgehog_size == 0);
-
-    const double truck_speed = 1.2;
-
-    Vehicle truck(sf::Vector2f(x_vehicle , y_vehicle), 100, 2 * hedgehog_size, sf::Color::Blue, truck_speed, true); //true -> drive to right
-    vehicles.push_back(truck);
-  }
-
-  //Create trucks upper lane
-  for(int i = 0; i <= 2; ++i)
-  {
-    int x_vehicle = 50 + (i * 240);
-    assert(50 + (i * 240) <= window_width);
-    int y_vehicle = 180;
-    assert(y_vehicle % hedgehog_size == 0);
-
-    const double truck_speed = 1.2;
-
-    Vehicle truck(sf::Vector2f(x_vehicle , y_vehicle), 100, 2 * hedgehog_size, sf::Color::Blue, truck_speed, false); //false -> drive to left
-    vehicles.push_back(truck);
-  }
-
-  //Create walkers upper lane
-  for(int i = 0; i <= 7; ++i)
-  {
-    int x_vehicle = 10 + (i * 80);
-    assert(10 + (i * 80) <= window_width);
-    int y_vehicle = 75;
-    assert(y_vehicle % hedgehog_size == 0);
-
-    const double truck_speed = 0.4;
-
-    Vehicle walker(sf::Vector2f(x_vehicle , y_vehicle), hedgehog_size, hedgehog_size, sf::Color::Magenta, truck_speed, false); //false -> drive to left
-    vehicles.push_back(walker);
-  }
-
+  append(create_bikes_lower_lane(window_width, hedgehog_size), vehicles);
+  append(create_bikes_upper_lane(window_width, hedgehog_size), vehicles);
+  append(create_cars_lower_lane(window_width, hedgehog_size), vehicles);
+  append(create_cars_upper_lane(window_width, hedgehog_size), vehicles);
+  append(create_trucks_lower_lane(window_width, hedgehog_size), vehicles);
+  append(create_trucks_upper_lane(window_width, hedgehog_size), vehicles);
+  append(create_walkers_upper_lane(window_width, hedgehog_size), vehicles);
   assert(vehicles.size() == 34);
   return vehicles;
 }
@@ -192,9 +76,218 @@ void Vehicle::drive()
   }
 }
 
+std::vector<Vehicle> create_bikes_lower_lane(
+  const int window_width,
+  const int hedgehog_size)
+{
+  std::vector<Vehicle> vehicles;
+  for(int i = 0; i <= 5; ++i)
+  {
+    int x_vehicle = 50 + (i * 110);
+    assert(50 + (i * 110) <= window_width);
+    int y_vehicle = 510;
+    assert(y_vehicle % hedgehog_size == 0);
+
+    const double bike_speed = 0.8;
+
+    Vehicle bike(
+      sf::Vector2f(x_vehicle , y_vehicle),
+      2 * hedgehog_size,
+      2 * hedgehog_size,
+      sf::Color::Cyan,
+      bike_speed,
+      true); //true -> drive to right
+    vehicles.push_back(bike);
+  }
+  return vehicles;
+}
+
+std::vector<Vehicle> create_bikes_upper_lane(
+  const int window_width,
+  const int hedgehog_size)
+{
+  std::vector<Vehicle> vehicles;
+  for(int i = 0; i <= 5; ++i)
+  {
+    int x_vehicle = 50 + (i * 110);
+    assert(50 + (i * 110) <= window_width);
+    int y_vehicle = 120;
+    assert(y_vehicle % hedgehog_size == 0);
+
+    const double bike_speed = 0.8;
+
+    Vehicle bike(
+      sf::Vector2f(x_vehicle , y_vehicle),
+      2 * hedgehog_size,
+      2 * hedgehog_size,
+      sf::Color::Cyan,
+      bike_speed,
+      false); //false -> drive to left
+    vehicles.push_back(bike);
+  }
+  return vehicles;
+}
+
+std::vector<Vehicle> create_cars_lower_lane(
+  const int window_width,
+  const int hedgehog_size)
+{
+  std::vector<Vehicle> vehicles;
+  for(int i = 0; i <= 3; ++i)
+  {
+    int x_vehicle = 100 + (i * 160);
+    assert(100 + (i * 160) <= window_width);
+    int y_vehicle = 375;
+    assert(y_vehicle % hedgehog_size == 0);
+
+    const int car_length = 50;
+    const int car_width = 30;
+    assert(car_width % hedgehog_size == 0);
+    assert(100 + (i * 160) <= window_width);
+
+    const double car_speed = 1.8;
+
+    Vehicle car(
+      sf::Vector2f(x_vehicle, y_vehicle),
+      car_length,
+      car_width,
+      sf::Color::Yellow,
+      car_speed,
+      true); //true -> drive to right
+    vehicles.push_back(car);
+  }
+  return vehicles;
+}
+
+std::vector<Vehicle> create_cars_upper_lane(
+  const int window_width,
+  const int hedgehog_size)
+{
+  std::vector<Vehicle> vehicles;
+  for(int i = 0; i <= 3; ++i)
+  {
+    int x_vehicle = 100 + (i * 160);
+    assert(100 + (i * 160) <= window_width);
+    int y_vehicle = 240;
+    assert(y_vehicle % hedgehog_size == 0);
+
+    const int car_length = 50;
+    const int car_width = 30;
+    assert(car_width % hedgehog_size == 0);
+    assert(100 + (i * 160) <= window_width);
+
+    const double car_speed = 1.8;
+
+    Vehicle car(
+      sf::Vector2f(x_vehicle, y_vehicle),
+      car_length, car_width,
+      sf::Color::Yellow,
+      car_speed,
+      false); //false -> drive to left
+    vehicles.push_back(car);
+  }
+  return vehicles;
+}
+
+std::vector<Vehicle> create_trucks_lower_lane(
+  const int window_width,
+  const int hedgehog_size)
+{
+  std::vector<Vehicle> vehicles;
+  for(int i = 0; i <= 2; ++i)
+  {
+    int x_vehicle = 50 + (i * 240);
+    assert(50 + (i * 240) <= window_width);
+    int y_vehicle = 450;
+    assert(y_vehicle % hedgehog_size == 0);
+
+    const double truck_speed = 1.2;
+
+    Vehicle truck(
+      sf::Vector2f(x_vehicle , y_vehicle),
+      100,
+      2 * hedgehog_size,
+      sf::Color::Blue,
+      truck_speed,
+      true); //true -> drive to right
+    vehicles.push_back(truck);
+  }
+  return vehicles;
+}
+
+std::vector<Vehicle> create_trucks_upper_lane(
+  const int window_width,
+  const int hedgehog_size)
+{
+  std::vector<Vehicle> vehicles;
+  for(int i = 0; i <= 2; ++i)
+  {
+    int x_vehicle = 50 + (i * 240);
+    assert(50 + (i * 240) <= window_width);
+    int y_vehicle = 180;
+    assert(y_vehicle % hedgehog_size == 0);
+
+    const double truck_speed = 1.2;
+
+    Vehicle truck(
+      sf::Vector2f(x_vehicle , y_vehicle),
+      100,
+      2 * hedgehog_size,
+      sf::Color::Blue,
+      truck_speed,
+      false); //false -> drive to left
+    vehicles.push_back(truck);
+  }
+  return vehicles;
+}
+
+std::vector<Vehicle> create_walkers_upper_lane(
+  const int window_width,
+  const int hedgehog_size)
+{
+  std::vector<Vehicle> vehicles;
+  for(int i = 0; i <= 7; ++i)
+  {
+    int x_vehicle = 10 + (i * 80);
+    assert(10 + (i * 80) <= window_width);
+    int y_vehicle = 75;
+    assert(y_vehicle % hedgehog_size == 0);
+
+    const double truck_speed = 0.4;
+
+    Vehicle walker(
+      sf::Vector2f(x_vehicle , y_vehicle),
+      hedgehog_size,
+      hedgehog_size,
+      sf::Color::Magenta,
+      truck_speed,
+      false); //false -> drive to left
+    vehicles.push_back(walker);
+  }
+  return vehicles;
+}
+
 sf::Vector2f Vehicle::getPosition() const
 {
   return position;
+}
+
+void keep_vehicle_in_window(
+  sf::RenderWindow * window,
+  Vehicle &vehicle)
+{
+  sf::Vector2f position = vehicle.getPosition();
+  float position_x = position.x;
+  if(vehicle.getDirection() == true && //true -> drive to right
+     position_x >= window->getSize().x)
+  {
+    vehicle.set_vehicle_left();
+  }
+  else if(vehicle.getDirection() == false && //false -> drive to left
+          position_x <= -vehicle.getLength())
+  {
+    vehicle.set_vehicle_right(window->getSize().x);
+  }
 }
 
 void Vehicle::setPosition(

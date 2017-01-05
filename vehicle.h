@@ -33,8 +33,16 @@ public:
   void set_vehicle_right(const int window_width);
 };
 
+void append(const std::vector<Vehicle>& add_these_vehicles, std::vector<Vehicle>& add_vehicles_here);
 bool are_colliding(Vehicle vehicle, Hedgehog hedgehog);
-void keep_vehicle_in_window(sf::RenderWindow * window, Vehicle &vehicle);
 std::vector<Vehicle> create_vehicles(const int hedgehog_size, const int window_width) noexcept;
+std::vector<Vehicle> create_bikes_lower_lane(const int window_width, const int hedgehog_size);
+std::vector<Vehicle> create_bikes_upper_lane(const int window_width, const int hedgehog_size);
+std::vector<Vehicle> create_cars_lower_lane(const int window_width, const int hedgehog_size);
+std::vector<Vehicle> create_cars_upper_lane(const int window_width, const int hedgehog_size);
+std::vector<Vehicle> create_trucks_lower_lane(const int window_width, const int hedgehog_size);
+std::vector<Vehicle> create_trucks_upper_lane(const int window_width, const int hedgehog_size);
+std::vector<Vehicle> create_walkers_upper_lane(const int window_width, const int hedgehog_size);
+void keep_vehicle_in_window(sf::RenderWindow * window, Vehicle &vehicle);
 
 #endif // VEHICLE_H

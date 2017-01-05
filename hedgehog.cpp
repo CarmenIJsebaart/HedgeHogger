@@ -46,41 +46,21 @@ void move(
   Hedgehog &hedgehog,
   std::vector<Obstacle> obstacles)
 {
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left) &&
-     hedgehog.getPosition().x >= hedgehog.getSize() &&
-     is_touching_obstacle_right(obstacles, hedgehog, hedgehog.getSize()) == false)
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
   {
-    sf::Vector2f hedgehog_position = hedgehog.getPosition();
-    //--hedgehog_position.x;
-    hedgehog_position.x = hedgehog.getPosition().x - (hedgehog.getSize());
-    hedgehog.setPosition(hedgehog_position);
+    move_down(hedgehog, window, obstacles);
   }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
-     hedgehog.getPosition().x <= (window->getSize().x - (3 * hedgehog.getSize())) &&
-     is_touching_obstacle_left(obstacles, hedgehog, hedgehog.getSize()) == false)
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
   {
-    sf::Vector2f hedgehog_position = hedgehog.getPosition();
-    //++hedgehog_position.x;
-    hedgehog_position.x = hedgehog.getPosition().x + (hedgehog.getSize());
-    hedgehog.setPosition(hedgehog_position);
+    move_left(hedgehog, obstacles);
   }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) &&
-     hedgehog.getPosition().y >= hedgehog.getSize() &&
-     is_touching_obstacle_bottom(obstacles, hedgehog, hedgehog.getSize()) == false)
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
   {
-    sf::Vector2f hedgehog_position = hedgehog.getPosition();
-    //--hedgehog_position.y;
-    hedgehog_position.y = hedgehog.getPosition().y - (hedgehog.getSize());
-    hedgehog.setPosition(hedgehog_position);
+    move_right(hedgehog, window, obstacles);
   }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
-     hedgehog.getPosition().y + (2 * hedgehog.getSize()) < window->getSize().y &&
-     is_touching_obstacle_top(obstacles, hedgehog, hedgehog.getSize()) == false )
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
   {
-    sf::Vector2f hedgehog_position = hedgehog.getPosition();
-    //++hedgehog_position.y;
-    hedgehog_position.y = hedgehog.getPosition().y + (hedgehog.getSize());
-    hedgehog.setPosition(hedgehog_position);
+    move_up(hedgehog, obstacles);
   }
 }
 
@@ -91,12 +71,12 @@ bool is_touching_obstacle_bottom(
 {
   for(auto &obstacle : obstacles)
   {
-    int y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
-    int y_min_hedgehog = hedgehog.getPosition().y;
+    const auto y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
+    const auto y_min_hedgehog = hedgehog.getPosition().y;
 
-    int x_min_obstacle = obstacle.getPosition().x;
-    int x_max_obstacle = obstacle.getPosition().x + obstacle.getLength();
-    int x_min_hedgehog = hedgehog.getPosition().x;
+    const auto x_min_obstacle = obstacle.getPosition().x;
+    const auto x_max_obstacle = obstacle.getPosition().x + obstacle.getLength();
+    const auto x_min_hedgehog = hedgehog.getPosition().x;
 
     if(y_min_hedgehog == y_max_obstacle &&
        x_min_hedgehog > (x_min_obstacle - (2 * hedgehog_size)) &&
@@ -115,12 +95,12 @@ bool is_touching_obstacle_left(
 {
   for(auto &obstacle : obstacles)
   {
-    int y_min_obstacle = obstacle.getPosition().y;
-    int y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
-    int y_min_hedgehog = hedgehog.getPosition().y;
+    const auto y_min_obstacle = obstacle.getPosition().y;
+    const auto y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
+    const auto y_min_hedgehog = hedgehog.getPosition().y;
 
-    int x_min_obstacle = obstacle.getPosition().x;
-    int x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
+    const auto x_min_obstacle = obstacle.getPosition().x;
+    const auto x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
 
     if(x_max_hedgehog == x_min_obstacle &&
        y_min_hedgehog > (y_min_obstacle - (2 * hedgehog_size)) &&
@@ -129,7 +109,7 @@ bool is_touching_obstacle_left(
       return true;
     }
   }
-    return false;
+  return false;
 }
 
 bool is_touching_obstacle_right(
@@ -139,12 +119,12 @@ bool is_touching_obstacle_right(
 {
   for(auto &obstacle : obstacles)
   {
-    int y_min_obstacle = obstacle.getPosition().y;
-    int y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
-    int y_min_hedgehog = hedgehog.getPosition().y;
+    const auto y_min_obstacle = obstacle.getPosition().y;
+    const auto y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
+    const auto y_min_hedgehog = hedgehog.getPosition().y;
 
-    int x_max_obstacle = obstacle.getPosition().x + obstacle.getLength();
-    int x_min_hedgehog = hedgehog.getPosition().x;
+    const auto x_max_obstacle = obstacle.getPosition().x + obstacle.getLength();
+    const auto x_min_hedgehog = hedgehog.getPosition().x;
 
     if(x_min_hedgehog == x_max_obstacle &&
        y_min_hedgehog > (y_min_obstacle - (2 * hedgehog_size)) &&
@@ -163,12 +143,12 @@ bool is_touching_obstacle_top(
 {
   for(auto &obstacle : obstacles)
   {
-    int y_min_obstacle = obstacle.getPosition().y;
-    int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
+    const auto y_min_obstacle = obstacle.getPosition().y;
+    const auto y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
 
-    int x_min_hedgehog = hedgehog.getPosition().x;
-    int x_max_obstacle = obstacle.getPosition().x + obstacle.getLength();
-    int x_min_obstacle = obstacle.getPosition().x;
+    const auto x_min_hedgehog = hedgehog.getPosition().x;
+    const auto x_max_obstacle = obstacle.getPosition().x + obstacle.getLength();
+    const auto x_min_obstacle = obstacle.getPosition().x;
 
     if(y_max_hedgehog == y_min_obstacle &&
        x_min_hedgehog > (x_min_obstacle - (2 * hedgehog_size)) &&
@@ -177,5 +157,63 @@ bool is_touching_obstacle_top(
       return true;
     }
   }
-  return false;
+    return false;
+}
+
+void move_down(
+  Hedgehog &hedgehog,
+  sf::RenderWindow * window,
+  std::vector<Obstacle> obstacles)
+{
+  if(hedgehog.getPosition().y + (2 * hedgehog.getSize()) < window->getSize().y &&
+  is_touching_obstacle_top(obstacles, hedgehog, hedgehog.getSize()) == false)
+  {
+    sf::Vector2f hedgehog_position = hedgehog.getPosition();
+    //++hedgehog_position.y;
+    hedgehog_position.y = hedgehog.getPosition().y + (hedgehog.getSize());
+    hedgehog.setPosition(hedgehog_position);
+   }
+}
+
+void move_left(
+  Hedgehog &hedgehog,
+  std::vector<Obstacle> obstacles)
+{
+  if(hedgehog.getPosition().x >= hedgehog.getSize() &&
+  is_touching_obstacle_right(obstacles, hedgehog, hedgehog.getSize()) == false)
+  {
+    sf::Vector2f hedgehog_position = hedgehog.getPosition();
+    //--hedgehog_position.x;
+    hedgehog_position.x = hedgehog.getPosition().x - (hedgehog.getSize());
+    hedgehog.setPosition(hedgehog_position);
+  }
+}
+
+void move_right(
+  Hedgehog &hedgehog,
+  sf::RenderWindow * window,
+  std::vector<Obstacle> obstacles)
+{
+  if(hedgehog.getPosition().x <= (window->getSize().x - (3 * hedgehog.getSize())) &&
+  is_touching_obstacle_left(obstacles, hedgehog, hedgehog.getSize()) == false)
+  {
+    sf::Vector2f hedgehog_position = hedgehog.getPosition();
+    //++hedgehog_position.x;
+    hedgehog_position.x = hedgehog.getPosition().x + (hedgehog.getSize());
+    hedgehog.setPosition(hedgehog_position);
+  }
+}
+
+void move_up(
+  Hedgehog &hedgehog,
+  std::vector<Obstacle> obstacles)
+{
+  if(hedgehog.getPosition().y >= hedgehog.getSize() &&
+  is_touching_obstacle_bottom(obstacles, hedgehog, hedgehog.getSize()) == false)
+  {
+    sf::Vector2f hedgehog_position = hedgehog.getPosition();
+    //--hedgehog_position.y;
+    hedgehog_position.y = hedgehog.getPosition().y - (hedgehog.getSize());
+    hedgehog.setPosition(hedgehog_position);
+  }
 }

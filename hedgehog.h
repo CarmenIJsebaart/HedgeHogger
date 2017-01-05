@@ -26,5 +26,9 @@ bool is_touching_obstacle_bottom(std::vector<Obstacle> obstacles, Hedgehog hedge
 bool is_touching_obstacle_left(std::vector<Obstacle> obstacles, Hedgehog hedgehog, const int hedgehog_size);
 bool is_touching_obstacle_right(std::vector<Obstacle> obstacles, Hedgehog hedgehog, const int hedgehog_size);
 bool is_touching_obstacle_top(std::vector<Obstacle> obstacles, Hedgehog hedgehog, const int hedgehog_size);
+void move_down(Hedgehog &hedgehog, sf::RenderWindow * window, std::vector<Obstacle> obstacles);
+void move_left(Hedgehog &hedgehog, std::vector<Obstacle> obstacles);
+void move_right(Hedgehog &hedgehog, sf::RenderWindow * window, std::vector<Obstacle> obstacles);
+void move_up(Hedgehog &hedgehog, std::vector<Obstacle> obstacles);
 
 #endif // HEDGEHOG_H
