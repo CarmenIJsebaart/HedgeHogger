@@ -19,6 +19,6 @@ public:
   int getWidth() const { return width; }
 };
 
-std::vector<Obstacle> create_obstacles(const int window_width, const int hedgehog_size) noexcept;
+std::vector<Obstacle> create_obstacles(const int window_width, const int hedgehog_size);
 
 #endif // OBSTACLE_H
