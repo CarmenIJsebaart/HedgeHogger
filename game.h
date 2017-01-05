@@ -9,31 +9,35 @@
 
 class Game
 {
+public:
+  Game();
+
+
+  const Hedgehog& get_hedgehog() const noexcept { return hedgehog; }
+
+  void press_key(const sf::Keyboard::Key k);
+  void restart();
+  void run();
+  void tick();
+
+private:
+
+  sf::Clock clock;
   Hedgehog hedgehog;
   std::vector<Obstacle> obstacles;
   std::vector<Vehicle> vehicles;
   sf::RenderWindow * window;
   bool is_game_over;
   bool is_winner;
-public:
-  Game();
 
-  void run();
+
+  void process_poll_events();
+  void will_restart();
+
 };
 
 
 
 
-void process_poll_events(
-  sf::RenderWindow * window,
-  Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles,
-  bool &is_game_over,
-  bool &is_winner);
-std::pair<bool, bool> start_over(
-  sf::RenderWindow * window,
-  Hedgehog &hedgehog,
-  bool is_game_over,
-  bool is_winner);
 
 #endif // GAME_H

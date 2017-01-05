@@ -4,6 +4,7 @@ cpp_files=`ls *.cpp`
 
 # Clean main should work
 ./oclint-0.10.3/bin/oclint -o oclint.log \
+  -disable-rule ShortVariableName \
   $cpp_files \
   -- -c -std=c++14
 

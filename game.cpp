@@ -14,12 +14,27 @@ Game::Game()
   vehicles = create_vehicles(hedgehog.getSize(), window->getSize().x);
 }
 
-void process_poll_events(
-  sf::RenderWindow * window,
-  Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles,
-  bool &is_game_over,
-  bool &is_winner)
+void Game::press_key(const sf::Keyboard::Key k)
+{
+  if(k == sf::Keyboard::Down)
+  {
+    move_down(hedgehog, window, obstacles);
+  }
+  else if(k == sf::Keyboard::Left)
+  {
+    move_left(hedgehog, obstacles);
+  }
+  else if(k == sf::Keyboard::Right)
+  {
+    move_right(hedgehog, window, obstacles);
+  }
+  else if(k == sf::Keyboard::Up)
+  {
+    move_up(hedgehog, obstacles);
+  }
+}
+
+void Game::process_poll_events()
 {
   sf::Event event;
   while(window->pollEvent(event))
@@ -31,9 +46,7 @@ void process_poll_events(
         break;
       case sf::Event::KeyPressed:
       {
-        const std::pair<bool, bool> p = start_over(window, hedgehog, is_game_over, is_winner);
-        is_game_over = p.first;
-        is_winner = p.second;
+        will_restart();
         move(window, hedgehog, obstacles);
       }
       break;
@@ -43,43 +56,44 @@ void process_poll_events(
   }
 }
 
-void Game::run()
-{
-  sf::Clock clock;
-
-  while(window->isOpen())
-  {
-    process_poll_events(window, hedgehog, obstacles, is_game_over, is_winner);
-
-    const double update_time = 10; //milliseconds
-    if(clock.getElapsedTime().asMilliseconds() >= update_time)
-    {
-      drive(vehicles);
-      keep_vehicles_in_window(window, vehicles);
-      clock.restart();
-    }
-    if(are_colliding(vehicles, hedgehog)) { is_game_over = true; }
-    if(hedgehog.getPosition().y == 0) { is_winner = true; }
-
-    draw_on_window(window, hedgehog, vehicles, obstacles, is_game_over, is_winner);
-  }
-}
-
-std::pair<bool, bool> start_over(
-  sf::RenderWindow * window,
-  Hedgehog &hedgehog,
-  bool is_game_over,
-  bool is_winner)
+void Game::will_restart()
 {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
   {
-    //is_game_over = false;
-    //is_winner = false;
-    hedgehog.setPosition(
-      sf::Vector2f(
-        (window->getSize().x / 2) - hedgehog.getSize(),
-         window->getSize().y - (hedgehog.getSize() * 2)));
-    return std::make_pair(false, false);
+    restart();
   }
-  return std::make_pair(is_game_over, is_winner);
+}
+
+
+void Game::restart()
+{
+  hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
+  is_game_over = false;
+  is_winner = false;
+}
+
+void Game::run()
+{
+  clock.restart();
+  while(window->isOpen())
+  {
+    tick();
+  }
+}
+
+void Game::tick()
+{
+  process_poll_events();
+
+  const double update_time = 10; //milliseconds
+  if(clock.getElapsedTime().asMilliseconds() >= update_time)
+  {
+    drive(vehicles);
+    keep_vehicles_in_window(window, vehicles);
+    clock.restart();
+  }
+  if(are_colliding(vehicles, hedgehog)) { is_game_over = true; }
+  if(hedgehog.getPosition().y == 0) { is_winner = true; }
+
+  draw_on_window(window, hedgehog, vehicles, obstacles, is_game_over, is_winner);
 }
