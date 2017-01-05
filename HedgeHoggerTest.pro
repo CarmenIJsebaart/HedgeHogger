@@ -4,6 +4,7 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main_test.cpp \
+    game.cpp \
     hedgehog.cpp \
     hedgehog_test.cpp \
     obstacle.cpp \
@@ -11,9 +12,11 @@ SOURCES += main_test.cpp \
     vehicle_test.cpp \
     window.cpp \
     window_test.cpp \
-    obstacle_test.cpp
+    obstacle_test.cpp \
+    game_test.cpp
 
 HEADERS += \
+    game.h \
     hedgehog.h \
     obstacle.h \
     vehicle.h \
