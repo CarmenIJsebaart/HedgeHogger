@@ -8,9 +8,10 @@ sf::RenderWindow * create_window(const int window_height, const int window_width
 }
 
 void draw_on_window(sf::RenderWindow *window, Hedgehog hedgehog, std::vector<Vehicle> vehicles,
-                    sf::Text text, std::vector<Obstacle> obstacles, bool game_over_screen)
+                    sf::Text text, std::vector<Obstacle> obstacles, bool game_over_screen,
+                    bool winner_screen)
 {
-  //if(game_over_screen == false)
+  if(game_over_screen == false && winner_screen == false)
   {
     window->clear();
     for(auto &obstacle : obstacles)
@@ -22,14 +23,23 @@ void draw_on_window(sf::RenderWindow *window, Hedgehog hedgehog, std::vector<Veh
     {
       window->draw(vehicle.getShape());
     }
+    window->draw(text);
     window->display();
   }
-  /*if(game_over_screen == true)
+  if(game_over_screen == true)
   {
     window->clear(sf::Color::Black);
     text.setString("Game Over");
     text.setCharacterSize(80);
     window->draw(text);
     window->display();
-  }*/
+  }
+  if(winner_screen == true)
+  {
+    window->clear(sf::Color::Red);
+    text.setString("Winner!");
+    text.setCharacterSize(120);
+    window->draw(text);
+    window->display();
+  }
 }

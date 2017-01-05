@@ -5,7 +5,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "hedgehog.h"
-#include "vehicletype.h"
 
 class Vehicle
 {
@@ -34,8 +33,8 @@ public:
   void set_vehicle_right(const int window_width);
 };
 
-void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed);
-void check_direction(sf::RenderWindow * window, Vehicle &vehicle);
+bool are_colliding(Vehicle vehicle, Hedgehog hedgehog);
+void keep_vehicle_in_window(sf::RenderWindow * window, Vehicle &vehicle);
 std::vector<Vehicle> create_vehicles(const int hedgehog_size, const int window_width) noexcept;
 
 #endif // VEHICLE_H

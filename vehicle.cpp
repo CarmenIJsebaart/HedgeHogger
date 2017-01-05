@@ -10,7 +10,7 @@ Vehicle::Vehicle(const sf::Vector2f &any_position, int length, int width, sf::Co
 {
 }
 
-void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed)
+bool are_colliding(Vehicle vehicle, Hedgehog hedgehog)
 {
   int y_min_vehicle = vehicle.getPosition().y;
   int y_max_vehicle = vehicle.getPosition().y + vehicle.getWidth();
@@ -30,12 +30,13 @@ void check_collision(Vehicle vehicle, Hedgehog hedgehog, bool &has_crashed)
        (x_max_hedgehog > x_min_vehicle && x_max_hedgehog < x_max_vehicle) ||
        (x_min_hedgehog <= x_min_vehicle && x_max_hedgehog >= x_max_vehicle))
     {
-      has_crashed = true;
+      return true;
     }
   }
+  return false;
 }
 
-void check_direction(sf::RenderWindow * window, Vehicle &vehicle)
+void keep_vehicle_in_window(sf::RenderWindow * window, Vehicle &vehicle)
 {
   sf::Vector2f position = vehicle.getPosition();
   float position_x = position.x;

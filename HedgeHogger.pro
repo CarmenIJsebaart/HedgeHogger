@@ -7,7 +7,6 @@ SOURCES += main.cpp \
     vehicle.cpp \
     hedgehog.cpp \
     window.cpp \
-    vehicletype.cpp \
     obstacle.cpp
 
 CONFIG += c++14
@@ -22,7 +21,6 @@ HEADERS += \
     vehicle.h \
     hedgehog.h \
     window.h \
-    vehicletype.h \
     obstacle.h
 
 

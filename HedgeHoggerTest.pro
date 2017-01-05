@@ -17,7 +17,6 @@ HEADERS += \
     hedgehog.h \
     obstacle.h \
     vehicle.h \
-    vehicletype.h \
     window.h
 
 # C++14

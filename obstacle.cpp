@@ -8,24 +8,6 @@ Obstacle::Obstacle(const sf::Vector2f position, int length, int width, sf::Color
 {
 }
 
-/*void check_collision(Obstacle obstacle, Hedgehog hedgehog, bool &is_touched)
-{
-  int y_min_obstacle = obstacle.getPosition().y;
-  int y_max_obstacle = obstacle.getPosition().y + obstacle.getWidth();
-  int y_min_hedgehog = hedgehog.getPosition().y;
-  int y_max_hedgehog = hedgehog.getPosition().y + (2 * hedgehog.getSize());
-
-  int x_min_obstacle = obstacle.getPosition().x;
-  int x_max_obstacle = obstacle.getPosition().x + obstacle.getLength();
-  int x_min_hedgehog = hedgehog.getPosition().x;
-  int x_max_hedgehog = hedgehog.getPosition().x + (2 * hedgehog.getSize());
-
-  if()
-  {
-
-  }
-}*/
-
 std::vector<Obstacle> create_obstacles(const int window_width, const int hedgehog_size) noexcept
 {
   std::vector<Obstacle> obstacles;
