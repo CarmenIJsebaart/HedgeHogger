@@ -40,6 +40,6 @@ std::vector<Vehicle> create_cars_upper_lane(const int window_width, const int he
 std::vector<Vehicle> create_trucks_lower_lane(const int window_width, const int hedgehog_size);
 std::vector<Vehicle> create_trucks_upper_lane(const int window_width, const int hedgehog_size);
 std::vector<Vehicle> create_walkers_upper_lane(const int window_width, const int hedgehog_size);
-void keep_vehicle_in_window(sf::RenderWindow * window, Vehicle &vehicle);
+void keep_vehicles_in_window(sf::RenderWindow * window, std::vector<Vehicle> &vehicles);
 
 #endif // VEHICLE_H

@@ -11,18 +11,20 @@ Hedgehog::Hedgehog(
 }
 
 bool are_colliding(
-  Vehicle vehicle,
+  std::vector<Vehicle> vehicles,
   Hedgehog hedgehog)
 {
-  bool x_direction = has_collision_x_direction(hedgehog, vehicle);
-  bool y_direction = has_collision_y_direction(hedgehog, vehicle);
-
-  if(x_direction && y_direction)
+  for(auto &vehicle : vehicles)
   {
-    return true;
+    bool x_direction = has_collision_x_direction(hedgehog, vehicle);
+    bool y_direction = has_collision_y_direction(hedgehog, vehicle);
+
+    if(x_direction && y_direction)
+    {
+      return true;
+    }
   }
   return false;
-
 }
 
 Hedgehog create_hedgehog(

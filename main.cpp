@@ -55,18 +55,11 @@ int main()
       }
       clock.restart();
     }
-
-    for(auto &vehicle : vehicles)
+    if (are_colliding(vehicles, hedgehog))
     {
-      if (are_colliding(vehicle, hedgehog))
-      {
-        game_over_screen = true;
-      }
+      game_over_screen = true;
     }
-    for(auto &vehicle : vehicles)
-    {
-      keep_vehicle_in_window(window, vehicle);
-    }
+    keep_vehicles_in_window(window, vehicles);
     if(hedgehog.getPosition().y == 0)
     {
       winner_screen = true;

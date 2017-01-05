@@ -250,21 +250,24 @@ sf::Vector2f Vehicle::getPosition() const
   return position;
 }
 
-void keep_vehicle_in_window(
+void keep_vehicles_in_window(
   sf::RenderWindow * window,
-  Vehicle &vehicle)
+  std::vector<Vehicle> &vehicles)
 {
-  sf::Vector2f position = vehicle.getPosition();
-  float position_x = position.x;
-  if(vehicle.getDirection() == true && //true -> drive to right
-     position_x >= window->getSize().x)
+  for(auto &vehicle : vehicles)
   {
-    vehicle.set_vehicle_left();
-  }
-  else if(vehicle.getDirection() == false && //false -> drive to left
-          position_x <= -vehicle.getLength())
-  {
-    vehicle.set_vehicle_right(window->getSize().x);
+    sf::Vector2f position = vehicle.getPosition();
+    float position_x = position.x;
+    if(vehicle.getDirection() == true && //true -> drive to right
+       position_x >= window->getSize().x)
+    {
+      vehicle.set_vehicle_left();
+    }
+    else if(vehicle.getDirection() == false && //false -> drive to left
+            position_x <= -vehicle.getLength())
+    {
+      vehicle.set_vehicle_right(window->getSize().x);
+    }
   }
 }
 

@@ -21,7 +21,7 @@ public:
   float getSize() const noexcept { return size; }
 };
 
-bool are_colliding(Vehicle vehicles, Hedgehog hedgehog);
+bool are_colliding(std::vector<Vehicle> vehicles, Hedgehog hedgehog);
 Hedgehog create_hedgehog(const int window_height, const int window_width);
 void move(sf::RenderWindow * window, Hedgehog &hedgehog, std::vector<Obstacle> obstacles);
 bool has_collision_x_direction(Hedgehog hedgehog, Vehicle vehicle);
