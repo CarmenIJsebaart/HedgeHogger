@@ -49,10 +49,7 @@ int main()
 
     if(clock.getElapsedTime().asMilliseconds() >= update_time)
     {
-      for(auto &vehicle : vehicles)
-      {
-         vehicle.drive();
-      }
+      drive(vehicles);
       clock.restart();
     }
     if (are_colliding(vehicles, hedgehog))

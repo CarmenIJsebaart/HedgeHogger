@@ -42,15 +42,22 @@ std::vector<Vehicle> create_vehicles(
   return vehicles;
 }
 
-void Vehicle::drive()
+void drive(std::vector<Vehicle> &vehicles)
 {
-  if(direction == true)
+  for(auto &vehicle : vehicles)
   {
-    position.x = position.x + speed;
-  }
-  else if(direction == false)
-  {
-    position.x = position.x - speed;
+    if(vehicle.getDirection() == true)
+    {
+      auto current_x_position = vehicle.getPosition().x;
+      auto new_x_position = current_x_position + vehicle.getSpeed();
+      vehicle.setPosition(sf::Vector2f(new_x_position, vehicle.getPosition().y));
+    }
+    else if(vehicle.getDirection() == false)
+    {
+      auto current_x_position = vehicle.getPosition().x;
+      auto new_x_position = current_x_position - vehicle.getSpeed();
+      vehicle.setPosition(sf::Vector2f(new_x_position, vehicle.getPosition().y));
+    }
   }
 }
 

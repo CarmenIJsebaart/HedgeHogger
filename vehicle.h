@@ -21,12 +21,11 @@ public:
   int getLength() const { return length; }
   sf::Vector2f getPosition() const;
   sf::RectangleShape getShape();
-  int getSpeed() const { return speed; }
+  double getSpeed() const { return speed; }
   int getWidth() const { return width; }
 
   void setPosition(const sf::Vector2f &any_position);
 
-  void drive();
   void set_vehicle_left();
   void set_vehicle_right(const int window_width);
 };
@@ -40,6 +39,7 @@ std::vector<Vehicle> create_cars_upper_lane(const int window_width, const int he
 std::vector<Vehicle> create_trucks_lower_lane(const int window_width, const int hedgehog_size);
 std::vector<Vehicle> create_trucks_upper_lane(const int window_width, const int hedgehog_size);
 std::vector<Vehicle> create_walkers_upper_lane(const int window_width, const int hedgehog_size);
+void drive(std::vector<Vehicle> &vehicles);
 void keep_vehicles_in_window(sf::RenderWindow * window, std::vector<Vehicle> &vehicles);
 
 #endif // VEHICLE_H
