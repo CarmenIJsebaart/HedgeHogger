@@ -9,7 +9,6 @@ SOURCES += main_test.cpp \
     obstacle.cpp \
     vehicle.cpp \
     vehicle_test.cpp \
-    vehicletype.cpp \
     window.cpp \
     window_test.cpp
 

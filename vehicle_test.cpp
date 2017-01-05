@@ -15,7 +15,8 @@ BOOST_AUTO_TEST_CASE(test_vehicle_set_and_get_should_be_symmetrical)
   const sf::Vector2f any_position(3.14, 2.71);
   const float speed = 2.0;
   const int width = 30;
-  const Vehicle v(any_position, length, width, color, speed);
+  const bool direction = true;
+  const Vehicle v(any_position, length, width, color, speed, direction);
   BOOST_CHECK(v.getPosition() == any_position);
   BOOST_CHECK(v.getWidth() == width);
   BOOST_CHECK(v.getLength() == length);
