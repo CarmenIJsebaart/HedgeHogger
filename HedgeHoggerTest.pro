@@ -10,7 +10,8 @@ SOURCES += main_test.cpp \
     vehicle.cpp \
     vehicle_test.cpp \
     window.cpp \
-    window_test.cpp
+    window_test.cpp \
+    obstacle_test.cpp
 
 HEADERS += \
     hedgehog.h \

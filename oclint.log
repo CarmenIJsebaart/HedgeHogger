@@ -1,0 +1,25 @@
+
+
+OCLint Report
+
+Summary: TotalFiles=10 FilesWithViolations=3 P1=0 P2=6 P3=11 
+
+/home/s2813408/Githubs/HedgeHogger/hedgehog.cpp:44:1: high cyclomatic complexity [size|P2] Cyclomatic Complexity Number 13 exceeds limit of 10
+/home/s2813408/Githubs/HedgeHogger/main.cpp:35:7: too few branches in switch statement [convention|P3] 
+/home/s2813408/Githubs/HedgeHogger/main.cpp:10:1: long method [size|P3] Method with 67 lines exceeds limit of 50
+/home/s2813408/Githubs/HedgeHogger/main.cpp:10:1: high ncss method [size|P2] Method of 35 non-commenting source statements exceeds limit of 30
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:58:8: collapsible if statements [basic|P3] 
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:81:1: long line [size|P3] Line with 152 characters exceeds limit of 100
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:95:1: long line [size|P3] Line with 153 characters exceeds limit of 100
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:114:1: long line [size|P3] Line with 136 characters exceeds limit of 100
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:133:1: long line [size|P3] Line with 137 characters exceeds limit of 100
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:147:1: long line [size|P3] Line with 140 characters exceeds limit of 100
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:161:1: long line [size|P3] Line with 141 characters exceeds limit of 100
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:175:1: long line [size|P3] Line with 151 characters exceeds limit of 100
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:19:1: high cyclomatic complexity [size|P2] Cyclomatic Complexity Number 13 exceeds limit of 10
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:66:1: high cyclomatic complexity [size|P2] Cyclomatic Complexity Number 27 exceeds limit of 10
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:66:1: long method [size|P3] Method with 113 lines exceeds limit of 50
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:66:1: high npath complexity [size|P2] NPath Complexity Number 2187 exceeds limit of 200
+/home/s2813408/Githubs/HedgeHogger/vehicle.cpp:66:1: high ncss method [size|P2] Method of 68 non-commenting source statements exceeds limit of 30
+
+[OCLint (http://oclint.org) v0.10.3]

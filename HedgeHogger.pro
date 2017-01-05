@@ -29,6 +29,8 @@ CONFIG += debug_and_release
 # Release mode 
 CONFIG(release, debug|release) {
   DEFINES += NDEBUG
+
+  QMAKE_CXXFLAGS += -Wno-unused-parameter
 }
 # Debug mode
 CONFIG(debug, debug|release) {

@@ -1,15 +1,22 @@
 #include "window.h"
 
-sf::RenderWindow * create_window(const int window_height, const int window_width)
+sf::RenderWindow * create_window(
+  const int window_height,
+  const int window_width)
 {
   return new sf::RenderWindow(
              sf::VideoMode(window_width, window_height),
                            "HedgeHogger", sf::Style::Titlebar | sf::Style::Close);
 }
 
-void draw_on_window(sf::RenderWindow *window, Hedgehog hedgehog, std::vector<Vehicle> vehicles,
-                    sf::Text text, std::vector<Obstacle> obstacles, bool game_over_screen,
-                    bool winner_screen)
+void draw_on_window(
+  sf::RenderWindow * window,
+  Hedgehog hedgehog,
+  std::vector<Vehicle> vehicles,
+  sf::Text text,
+  std::vector<Obstacle> obstacles,
+  bool game_over_screen,
+  bool winner_screen)
 {
   if(game_over_screen == false && winner_screen == false)
   {

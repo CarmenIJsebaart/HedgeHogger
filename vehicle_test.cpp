@@ -22,6 +22,7 @@ BOOST_AUTO_TEST_CASE(test_vehicle_set_and_get_should_be_symmetrical)
   BOOST_CHECK(v.getLength() == length);
   BOOST_CHECK(v.getColor() == color);
   BOOST_CHECK(v.getSpeed() == speed);
+  BOOST_CHECK(v.getDirection() == direction);
 }
 
 #pragma GCC diagnostic pop
