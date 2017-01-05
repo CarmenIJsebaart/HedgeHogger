@@ -48,13 +48,13 @@ void drive(std::vector<Vehicle> &vehicles)
   {
     if(vehicle.getDirection() == true)
     {
-      auto current_x_position = vehicle.getPosition().x;
+      const auto current_x_position = vehicle.getPosition().x;
       auto new_x_position = current_x_position + vehicle.getSpeed();
       vehicle.setPosition(sf::Vector2f(new_x_position, vehicle.getPosition().y));
     }
     else if(vehicle.getDirection() == false)
     {
-      auto current_x_position = vehicle.getPosition().x;
+      const auto current_x_position = vehicle.getPosition().x;
       auto new_x_position = current_x_position - vehicle.getSpeed();
       vehicle.setPosition(sf::Vector2f(new_x_position, vehicle.getPosition().y));
     }
