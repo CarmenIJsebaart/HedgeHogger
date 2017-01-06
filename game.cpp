@@ -5,9 +5,7 @@ Game::Game()
     obstacles{},
     vehicles{},
     window{create_window()},
-    is_game_over{false},
-    is_winner{false}
-
+    state{Gamestate::normal}
 {
   hedgehog = create_hedgehog(window->getSize().x);
   obstacles = create_obstacles(window->getSize().x, hedgehog.get_size());
@@ -69,8 +67,7 @@ void Game::will_restart()
 void Game::restart()
 {
   hedgehog = create_hedgehog(window->getSize().x);
-  is_game_over = false;
-  is_winner = false;
+  state = Gamestate::normal;
 }
 
 void Game::run()
@@ -93,8 +90,8 @@ void Game::tick()
     keep_vehicles_in_window(*window, vehicles);
     clock.restart();
   }
-  if(are_colliding(vehicles, hedgehog)) { is_game_over = true; }
-  if(hedgehog.get_position().y == 0) { is_winner = true; }
+  if(are_colliding(vehicles, hedgehog)) { state = Gamestate::game_over; }
+  if(hedgehog.get_position().y == 0) { state = Gamestate::game_won; }
 
-  draw_on_window(*window, hedgehog, vehicles, obstacles, is_game_over, is_winner);
+  draw_on_window(*window, hedgehog, vehicles, obstacles, state);
 }

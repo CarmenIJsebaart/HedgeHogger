@@ -304,5 +304,4 @@ void set_vehicle_right(
   auto pos = vehicle.get_position();
   pos.x = window_width;
   vehicle.set_position(pos);
-  //position.x = window_width;
 }

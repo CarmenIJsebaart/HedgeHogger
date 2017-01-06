@@ -5,6 +5,7 @@ CONFIG -= qt
 
 SOURCES += main_test.cpp \
     game.cpp \
+    gamestates.cpp \
     hedgehog.cpp \
     hedgehog_test.cpp \
     obstacle.cpp \
@@ -17,6 +18,7 @@ SOURCES += main_test.cpp \
 
 HEADERS += \
     game.h \
+    gamestates.h \
     hedgehog.h \
     obstacle.h \
     vehicle.h \

@@ -6,6 +6,7 @@
 #include "hedgehog.h"
 #include "obstacle.h"
 #include "window.h"
+#include "gamestate.h"
 
 class Game
 {
@@ -27,8 +28,7 @@ private:
   std::vector<Obstacle> obstacles;
   std::vector<Vehicle> vehicles;
   std::unique_ptr<sf::RenderWindow> window;
-  bool is_game_over;
-  bool is_winner;
+  Gamestate state;
 
   void process_poll_events();
   void will_restart();

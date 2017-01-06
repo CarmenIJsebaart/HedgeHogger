@@ -14,18 +14,17 @@ void draw_on_window(
   const Hedgehog &hedgehog,
   const std::vector<Vehicle> &vehicles,
   const std::vector<Obstacle> &obstacles,
-  bool is_game_over,
-  bool is_winner)
+  const Gamestate &state)
 {
-  if(is_game_over == false && is_winner == false)
+  if(state == Gamestate::normal)
   {
     game_on_screen(window, obstacles, vehicles, hedgehog);
   }
-  if(is_game_over == true)
+  if(state == Gamestate::game_over)
   {
     game_over_screen(window);
   }
-  if(is_winner == true)
+  if(state == Gamestate::game_won)
   {
     is_winner_screen(window);
   }

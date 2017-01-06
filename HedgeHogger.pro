@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     hedgehog.cpp \
     window.cpp \
     obstacle.cpp \
-    game.cpp
+    game.cpp \
+    gamestate.cpp
 
 CONFIG += c++14
 QMAKE_CXX = g++-5
@@ -23,7 +24,8 @@ HEADERS += \
     hedgehog.h \
     window.h \
     obstacle.h \
-    game.h
+    game.h \
+    gamestate.h
 
 
 # Debug and release mode
