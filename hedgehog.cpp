@@ -178,29 +178,6 @@ bool is_touching_obstacle_top(
     return false;
 }
 
-void move(
-  const sf::RenderWindow &window,
-  Hedgehog &hedgehog,
-  const std::vector<Obstacle> &obstacles)
-{
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-  {
-    move_down(hedgehog, window, obstacles);
-  }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-  {
-    move_left(hedgehog, obstacles);
-  }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-  {
-    move_right(hedgehog, window, obstacles);
-  }
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-  {
-    move_up(hedgehog, obstacles);
-  }
-}
-
 void move_down(
   Hedgehog &hedgehog,
   const sf::RenderWindow &window,

@@ -48,7 +48,8 @@ void Game::process_poll_events()
       case sf::Event::KeyPressed:
       {
         will_restart();
-        move(*window, hedgehog, obstacles);
+
+        press_key(event.key.code);
       }
       break;
     default:

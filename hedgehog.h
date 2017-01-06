@@ -2,7 +2,6 @@
 #define HEDGEHOG_H
 
 #include <SFML/Graphics.hpp>
-
 #include "obstacle.h"
 #include "vehicle.h"
 

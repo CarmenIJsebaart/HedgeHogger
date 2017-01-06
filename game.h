@@ -1,11 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include "hedgehog.h"
 #include "obstacle.h"
 #include "window.h"
-#include <memory>
 
 class Game
 {
