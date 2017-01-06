@@ -41,17 +41,18 @@ void game_on_screen(
   window->clear();
   for(auto &obstacle : obstacles)
   {
-    window->draw(obstacle.getShape());
+    window->draw(obstacle.get_shape());
   }
-  window->draw(hedgehog.getShape());
+  window->draw(hedgehog.get_shape());
   for(auto &vehicle : vehicles)
   {
-    window->draw(vehicle.getShape());
+    window->draw(vehicle.get_shape());
   }
   window->display();
 }
 
-void game_over_screen(sf::RenderWindow * window)
+void game_over_screen(
+  sf::RenderWindow * window)
 {
   sf::Text text;
   sf::Font font;
@@ -67,7 +68,8 @@ void game_over_screen(sf::RenderWindow * window)
   window->display();
 }
 
-void is_winner_screen(sf::RenderWindow * window)
+void is_winner_screen(
+  sf::RenderWindow * window)
 {
   sf::Text text;
   sf::Font font;

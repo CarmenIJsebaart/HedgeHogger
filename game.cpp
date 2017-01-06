@@ -10,11 +10,12 @@ Game::Game()
 
 {
   hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
-  obstacles = create_obstacles(window->getSize().x, hedgehog.getSize());
-  vehicles = create_vehicles(hedgehog.getSize(), window->getSize().x);
+  obstacles = create_obstacles(window->getSize().x, hedgehog.get_size());
+  vehicles = create_vehicles(hedgehog.get_size(), window->getSize().x);
 }
 
-void Game::press_key(const sf::Keyboard::Key k)
+void Game::press_key(
+  const sf::Keyboard::Key k)
 {
   if(k == sf::Keyboard::Down)
   {
@@ -93,7 +94,7 @@ void Game::tick()
     clock.restart();
   }
   if(are_colliding(vehicles, hedgehog)) { is_game_over = true; }
-  if(hedgehog.getPosition().y == 0) { is_winner = true; }
+  if(hedgehog.get_position().y == 0) { is_winner = true; }
 
   draw_on_window(window, hedgehog, vehicles, obstacles, is_game_over, is_winner);
 }

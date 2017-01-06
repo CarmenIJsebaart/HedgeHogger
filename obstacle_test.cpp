@@ -15,9 +15,9 @@ BOOST_AUTO_TEST_CASE(test_obstacle_set_and_get_should_be_symmetrical)
   const int width = 125;
   const sf::Color color = sf::Color::Blue;
   Obstacle obstacle(position, length, width, color);
-  BOOST_CHECK(obstacle.getPosition() == position);
-  BOOST_CHECK(obstacle.getLength() == length);
-  BOOST_CHECK(obstacle.getWidth() == width);
+  BOOST_CHECK(obstacle.get_position() == position);
+  BOOST_CHECK(obstacle.get_length() == length);
+  BOOST_CHECK(obstacle.get_width() == width);
 }
 
 BOOST_AUTO_TEST_CASE(test_create_obstacles_use)

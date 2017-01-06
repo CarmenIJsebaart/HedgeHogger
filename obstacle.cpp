@@ -53,12 +53,12 @@ std::vector<Obstacle> create_obstacles(
   return obstacles;
 }
 
-sf::Vector2f Obstacle::getPosition() const
+sf::Vector2f Obstacle::get_position() const
 {
   return position;
 }
 
-sf::RectangleShape Obstacle::getShape()
+sf::RectangleShape Obstacle::get_shape()
 {
   sf::RectangleShape vehicle_shape;
   vehicle_shape.setSize(sf::Vector2f(length, width));

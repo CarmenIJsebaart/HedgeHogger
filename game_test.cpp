@@ -14,7 +14,7 @@ BOOST_AUTO_TEST_CASE(test_hedgehog_moves_up_when_user_presses_up_arrow)
   const Hedgehog h_before = g.get_hedgehog();
   g.press_key(sf::Keyboard::Up);
   const Hedgehog h_after = g.get_hedgehog();
-  BOOST_CHECK(h_after.getPosition() != h_before.getPosition());
+  BOOST_CHECK(h_after.get_position() != h_before.get_position());
 }
 
 BOOST_AUTO_TEST_CASE(test_hedgehog_does_not_move_when_user_presses_down_arrow_at_start)
@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(test_hedgehog_does_not_move_when_user_presses_down_arrow_at
   const Hedgehog h_before = g.get_hedgehog();
   g.press_key(sf::Keyboard::Down);
   const Hedgehog h_after = g.get_hedgehog();
-  BOOST_CHECK(h_after.getPosition() == h_before.getPosition());
+  BOOST_CHECK(h_after.get_position() == h_before.get_position());
 }
 
 BOOST_AUTO_TEST_CASE(test_game_restart_moves_hedgehog_back)
@@ -32,9 +32,9 @@ BOOST_AUTO_TEST_CASE(test_game_restart_moves_hedgehog_back)
   const Hedgehog h_before = g.get_hedgehog();
   g.press_key(sf::Keyboard::Up);
   const Hedgehog h_after = g.get_hedgehog();
-  assert(h_after.getPosition() != h_before.getPosition());
+  assert(h_after.get_position() != h_before.get_position());
   g.restart();
-  BOOST_CHECK(g.get_hedgehog().getPosition() == h_before.getPosition());
+  BOOST_CHECK(g.get_hedgehog().get_position() == h_before.get_position());
 }
 
 #pragma GCC diagnostic pop

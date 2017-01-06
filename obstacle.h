@@ -11,14 +11,20 @@ class Obstacle
     sf::Vector2f position;
     int width;
 public:
-  Obstacle(const sf::Vector2f position, int length, int width, sf::Color color);
+  Obstacle(
+    const sf::Vector2f position,
+    int length,
+    int width,
+    sf::Color color);
 
-  int getLength() const { return length; }
-  sf::Vector2f getPosition() const;
-  sf::RectangleShape getShape();
-  int getWidth() const { return width; }
+  int get_length() const { return length; }
+  sf::Vector2f get_position() const;
+  sf::RectangleShape get_shape();
+  int get_width() const { return width; }
 };
 
-std::vector<Obstacle> create_obstacles(const int window_width, const int hedgehog_size);
+std::vector<Obstacle> create_obstacles(
+  const int window_width,
+  const int hedgehog_size);
 
 #endif // OBSTACLE_H

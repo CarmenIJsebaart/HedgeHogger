@@ -14,9 +14,9 @@ BOOST_AUTO_TEST_CASE(test_hedgehog_constuctor_arguments_should_be_gettable)
   const float size(123.456);
   const sf::Color color(255, 128, 0);
   const Hedgehog h(any_position, size, color);
-  BOOST_CHECK(h.getPosition() == any_position);
-  BOOST_CHECK_EQUAL(h.getSize(), size);
-  BOOST_CHECK(h.getColor() == color);
+  BOOST_CHECK(h.get_position() == any_position);
+  BOOST_CHECK_EQUAL(h.get_size(), size);
+  BOOST_CHECK(h.get_color() == color);
 }
 
 Hedgehog create_test_hedgehog() noexcept
@@ -39,11 +39,11 @@ namespace sf {
 BOOST_AUTO_TEST_CASE(test_hedgehog_setter_and_getter_must_be_symmetrical)
 {
   Hedgehog h = create_test_hedgehog();
-  sf::Vector2f p = h.getPosition();
+  sf::Vector2f p = h.get_position();
   p.x += 1.0;
   p.y += 1.0;
-  h.setPosition(p);
-  BOOST_CHECK_EQUAL(h.getPosition(), p);
+  h.set_position(p);
+  BOOST_CHECK_EQUAL(h.get_position(), p);
 }
 
 #pragma GCC diagnostic pop

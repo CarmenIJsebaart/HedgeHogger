@@ -17,12 +17,12 @@ BOOST_AUTO_TEST_CASE(test_vehicle_constuctor_arguments_should_be_gettable)
   const int width = 30;
   const bool direction = true;
   const Vehicle v(any_position, length, width, color, speed, direction);
-  BOOST_CHECK(v.getPosition() == any_position);
-  BOOST_CHECK(v.getWidth() == width);
-  BOOST_CHECK(v.getLength() == length);
-  BOOST_CHECK(v.getColor() == color);
-  BOOST_CHECK(v.getSpeed() == speed);
-  BOOST_CHECK(v.getDirection() == direction);
+  BOOST_CHECK(v.get_position() == any_position);
+  BOOST_CHECK(v.get_width() == width);
+  BOOST_CHECK(v.get_length() == length);
+  BOOST_CHECK(v.get_color() == color);
+  BOOST_CHECK(v.get_speed() == speed);
+  BOOST_CHECK(v.get_direction() == direction);
 }
 
 Vehicle create_test_vehicle() noexcept
@@ -33,20 +33,20 @@ Vehicle create_test_vehicle() noexcept
 BOOST_AUTO_TEST_CASE(test_vehicle_setter_and_getter_must_be_symmetrical)
 {
   Vehicle v = create_test_vehicle();
-  sf::Vector2f veh = v.getPosition();
+  sf::Vector2f veh = v.get_position();
   veh.x += 1.0;
   veh.y += 1.0;
-  v.setPosition(veh);
-  BOOST_CHECK(v.getPosition() == veh);
+  v.set_position(veh);
+  BOOST_CHECK(v.get_position() == veh);
 
   //Vehicle must be placed just outside window (on the left)
-  v.set_vehicle_left();
-  BOOST_CHECK(v.getPosition().x == -v.getLength());
+  set_vehicle_left(v);
+  BOOST_CHECK(v.get_position().x == -v.get_length());
 
   //Vehicle must be placed just outside window (on the right)
   const int window_width = 100;
-  v.set_vehicle_right(window_width);
-  BOOST_CHECK(v.getPosition().x == window_width);
+  set_vehicle_right(v, window_width);
+  BOOST_CHECK(v.get_position().x == window_width);
 }
 
 #pragma GCC diagnostic pop

@@ -12,10 +12,10 @@ class Game
 public:
   Game();
 
-
   const Hedgehog& get_hedgehog() const noexcept { return hedgehog; }
 
-  void press_key(const sf::Keyboard::Key k);
+  void press_key(
+    const sf::Keyboard::Key k);
   void restart();
   void run();
   void tick();
@@ -30,14 +30,8 @@ private:
   bool is_game_over;
   bool is_winner;
 
-
   void process_poll_events();
   void will_restart();
-
 };
-
-
-
-
 
 #endif // GAME_H

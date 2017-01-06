@@ -42,21 +42,22 @@ std::vector<Vehicle> create_vehicles(
   return vehicles;
 }
 
-void drive(std::vector<Vehicle> &vehicles)
+void drive(
+  std::vector<Vehicle> &vehicles)
 {
   for(auto &vehicle : vehicles)
   {
-    if(vehicle.getDirection() == true)
+    if(vehicle.get_direction() == true)
     {
-      const auto current_x_position = vehicle.getPosition().x;
-      auto new_x_position = current_x_position + vehicle.getSpeed();
-      vehicle.setPosition(sf::Vector2f(new_x_position, vehicle.getPosition().y));
+      const auto current_x_position = vehicle.get_position().x;
+      auto new_x_position = current_x_position + vehicle.get_speed();
+      vehicle.set_position(sf::Vector2f(new_x_position, vehicle.get_position().y));
     }
-    else if(vehicle.getDirection() == false)
+    else if(vehicle.get_direction() == false)
     {
-      const auto current_x_position = vehicle.getPosition().x;
-      auto new_x_position = current_x_position - vehicle.getSpeed();
-      vehicle.setPosition(sf::Vector2f(new_x_position, vehicle.getPosition().y));
+      const auto current_x_position = vehicle.get_position().x;
+      auto new_x_position = current_x_position - vehicle.get_speed();
+      vehicle.set_position(sf::Vector2f(new_x_position, vehicle.get_position().y));
     }
   }
 }
@@ -252,7 +253,7 @@ std::vector<Vehicle> create_walkers_upper_lane(
   return vehicles;
 }
 
-sf::Vector2f Vehicle::getPosition() const
+sf::Vector2f Vehicle::get_position() const noexcept
 {
   return position;
 }
@@ -263,28 +264,28 @@ void keep_vehicles_in_window(
 {
   for(auto &vehicle : vehicles)
   {
-    sf::Vector2f position = vehicle.getPosition();
+    sf::Vector2f position = vehicle.get_position();
     float position_x = position.x;
-    if(vehicle.getDirection() == true && //true -> drive to right
+    if(vehicle.get_direction() == true && //true -> drive to right
        position_x >= window->getSize().x)
     {
-      vehicle.set_vehicle_left();
+      set_vehicle_left(vehicle);
     }
-    else if(vehicle.getDirection() == false && //false -> drive to left
-            position_x <= -vehicle.getLength())
+    else if(vehicle.get_direction() == false && //false -> drive to left
+            position_x <= -vehicle.get_length())
     {
-      vehicle.set_vehicle_right(window->getSize().x);
+      set_vehicle_right(vehicle, window->getSize().x);
     }
   }
 }
 
-void Vehicle::setPosition(
+void Vehicle::set_position(
   const sf::Vector2f &any_position)
 {
   position = any_position;
 }
 
-sf::RectangleShape Vehicle::getShape()
+sf::RectangleShape Vehicle::get_shape()
 {
   sf::RectangleShape vehicle_shape;
   vehicle_shape.setSize(sf::Vector2f(length, width));
@@ -293,13 +294,19 @@ sf::RectangleShape Vehicle::getShape()
   return vehicle_shape;
 }
 
-void Vehicle::set_vehicle_left()
+void set_vehicle_left(Vehicle &vehicle)
 {
-  position.x = -length;
+  auto pos = vehicle.get_position();
+  pos.x = -vehicle.get_length();
+  vehicle.set_position(pos);
 }
 
-void Vehicle::set_vehicle_right(
+void set_vehicle_right(
+  Vehicle &vehicle,
   const int window_width)
 {
-  position.x = window_width;
+  auto pos = vehicle.get_position();
+  pos.x = window_width;
+  vehicle.set_position(pos);
+  //position.x = window_width;
 }
