@@ -49,4 +49,14 @@ BOOST_AUTO_TEST_CASE(test_vehicle_setter_and_getter_must_be_symmetrical)
   BOOST_CHECK(v.get_position().x == window_width);
 }
 
+BOOST_AUTO_TEST_CASE(test_vehicle_get_shape)
+{
+  const Vehicle v = create_test_vehicle();
+  const sf::RectangleShape  s = get_shape(v);
+  BOOST_CHECK(s.getFillColor() == v.get_color());
+  BOOST_CHECK(s.getPosition() == v.get_position());
+  BOOST_CHECK(s.getSize().x == v.get_length());
+  BOOST_CHECK(s.getSize().y == v.get_width());
+}
+
 #pragma GCC diagnostic pop

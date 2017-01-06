@@ -31,6 +31,14 @@ std::vector<Obstacle> create_obstacles(
   {
     throw std::invalid_argument("obstacles should fit to screen");
   }
+  if(obstacle_width % (2 * hedgehog_size) != 0)
+  {
+    throw std::invalid_argument("obstacles should fit to screen");
+  }
+  if(gap_length % (2 * hedgehog_size) != 0)
+  {
+    throw std::invalid_argument("obstacles should fit to screen");
+  }
 
   std::vector<Obstacle> obstacles;
   for(int i = 0; i <= 2; ++i)
@@ -41,15 +49,13 @@ std::vector<Obstacle> create_obstacles(
     {
       throw std::invalid_argument("obstacles do not fit on window");
     }
-    Obstacle obstacle(
+    const Obstacle obstacle(
       sf::Vector2f(x_obstacle, 300),
       obstacle_length,
       obstacle_width,
       sf::Color::Green);
     obstacles.push_back(obstacle);
   }
-
-  assert(obstacles.size() == 3);
   return obstacles;
 }
 

@@ -10,7 +10,6 @@
 
 BOOST_AUTO_TEST_CASE(test_window_set_and_get_should_be_symmetrical)
 {
-
 }
 
 #pragma GCC diagnostic pop

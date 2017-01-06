@@ -59,12 +59,16 @@ BOOST_AUTO_TEST_CASE(test_hedgehog_out_of_screen)
   BOOST_CHECK_THROW   (h.set_position(sf::Vector2f(0, -1)), std::invalid_argument);
 
   //Hedgehog should not be out of screen (right)
-  BOOST_CHECK_NO_THROW(h.set_position(sf::Vector2f(h.get_window_size() - 2 * h.get_size() + 0, 10)));
-  BOOST_CHECK_THROW   (h.set_position(sf::Vector2f(h.get_window_size() - 2 * h.get_size() + 1, 10)), std::invalid_argument);
+  BOOST_CHECK_NO_THROW(
+    h.set_position(sf::Vector2f(h.get_window_size() - 2 * h.get_size() + 0, 10)));
+  BOOST_CHECK_THROW(
+    h.set_position(sf::Vector2f(h.get_window_size() - 2 * h.get_size() + 1, 10)), std::invalid_argument);
 
   //Hedgehog should not be out of screen (bottom)
-  BOOST_CHECK_NO_THROW(h.set_position(sf::Vector2f(10, h.get_window_size() - 2 * h.get_size() + 0)));
-  BOOST_CHECK_THROW   (h.set_position(sf::Vector2f(10, h.get_window_size() - 2 * h.get_size() + 1)), std::invalid_argument);
+  BOOST_CHECK_NO_THROW(
+    h.set_position(sf::Vector2f(10, h.get_window_size() - 2 * h.get_size() + 0)));
+  BOOST_CHECK_THROW(
+    h.set_position(sf::Vector2f(10, h.get_window_size() - 2 * h.get_size() + 1)), std::invalid_argument);
 }
 
 #pragma GCC diagnostic pop

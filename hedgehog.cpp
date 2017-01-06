@@ -44,6 +44,16 @@ Hedgehog create_hedgehog(
   return hedgehog;
 }
 
+sf::CircleShape get_shape(
+  const Hedgehog &hedgehog)
+{
+  sf::CircleShape hedgehog_shape;
+  hedgehog_shape.setRadius(hedgehog.get_size());
+  hedgehog_shape.setPosition(hedgehog.get_position());
+  hedgehog_shape.setFillColor(hedgehog.get_color());
+  return hedgehog_shape;
+}
+
 bool has_collision_x_direction(
   const Hedgehog &hedgehog,
   const Vehicle &vehicle)
@@ -255,14 +265,4 @@ void Hedgehog::set_position(
     throw std::invalid_argument("position has to be on screen");
   }
   position = any_position;
-}
-
-sf::CircleShape get_shape(
-  const Hedgehog &hedgehog)
-{
-  sf::CircleShape hedgehog_shape;
-  hedgehog_shape.setRadius(hedgehog.get_size());
-  hedgehog_shape.setPosition(hedgehog.get_position());
-  hedgehog_shape.setFillColor(hedgehog.get_color());
-  return hedgehog_shape;
 }
