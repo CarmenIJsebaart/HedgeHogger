@@ -48,7 +48,6 @@ void Game::process_poll_events()
       case sf::Event::KeyPressed:
       {
         will_restart();
-
         press_key(event.key.code);
       }
       break;
