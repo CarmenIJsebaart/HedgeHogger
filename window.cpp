@@ -1,11 +1,10 @@
 #include "window.h"
 
 sf::RenderWindow * create_window(
-  const int window_height,
-  const int window_width)
+  const int window_size)
 {
   return new sf::RenderWindow(
-             sf::VideoMode(window_width, window_height),
+             sf::VideoMode(window_size, window_size),
              "HedgeHogger",
               sf::Style::Titlebar | sf::Style::Close);
 }

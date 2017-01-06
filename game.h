@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include <SFML/Graphics.hpp>
-
 #include "hedgehog.h"
 #include "obstacle.h"
 #include "window.h"
@@ -27,7 +26,7 @@ private:
   Hedgehog hedgehog;
   std::vector<Obstacle> obstacles;
   std::vector<Vehicle> vehicles;
-  sf::RenderWindow * window;
+  std::unique_ptr<sf::RenderWindow> window;
   bool is_game_over;
   bool is_winner;
 

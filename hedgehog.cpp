@@ -1,12 +1,16 @@
 #include "hedgehog.h"
 
+#include <stdexcept>
+
 Hedgehog::Hedgehog(
   const sf::Vector2f &any_position,
   float size,
-  sf::Color color)
+  sf::Color color,
+  const int window_size)
   : color{color},
     position{any_position},
-    size{size}
+    size{size},
+    window_size{window_size}
 {
 }
 
@@ -28,14 +32,14 @@ bool are_colliding(
 }
 
 Hedgehog create_hedgehog(
-  const int window_height,
-  const int window_width)
+  const int window_size)
 {
   const int size = 15;
   Hedgehog hedgehog(
-    sf::Vector2f((window_width / 2) - size, window_height - (size * 2)),
+    sf::Vector2f((window_size / 2) - size, window_size - (size * 2)),
     size,
-    sf::Color::Red);
+    sf::Color::Red,
+    window_size);
 
   return hedgehog;
 }
@@ -243,6 +247,13 @@ void move_up(
 void Hedgehog::set_position(
   const sf::Vector2f &any_position)
 {
+  if(any_position.x < 0 ||
+     any_position.x + (2 * size) > window_size  ||
+     any_position.y < 0 ||
+     any_position.y + (2 * size) > window_size)
+  {
+    throw std::invalid_argument("position has to be on screen");
+  }
   position = any_position;
 }
 

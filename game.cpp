@@ -1,7 +1,7 @@
 #include "game.h"
 
 Game::Game()
-  : hedgehog(sf::Vector2f(), 0.0, sf::Color::Black),
+  : hedgehog(sf::Vector2f(), 0.0, sf::Color::Black, 0),
     obstacles{},
     vehicles{},
     window{create_window()},
@@ -9,7 +9,7 @@ Game::Game()
     is_winner{false}
 
 {
-  hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
+  hedgehog = create_hedgehog(window->getSize().x);
   obstacles = create_obstacles(window->getSize().x, hedgehog.get_size());
   vehicles = create_vehicles(hedgehog.get_size(), window->getSize().x);
 }
@@ -68,7 +68,7 @@ void Game::will_restart()
 
 void Game::restart()
 {
-  hedgehog = create_hedgehog(window->getSize().x, window->getSize().y);
+  hedgehog = create_hedgehog(window->getSize().x);
   is_game_over = false;
   is_winner = false;
 }

@@ -11,16 +11,19 @@ class Hedgehog
   sf::Color color;
   sf::Vector2f position;
   float size;
+  int window_size;
 public:
   //Create the Hedgehog with 'position' as the initial position
   Hedgehog(
     const sf::Vector2f &any_position,
     float size,
-    sf::Color color);
+    sf::Color color,
+    const int window_size);
 
   sf::Color get_color() const noexcept { return color; }
   sf::Vector2f get_position() const noexcept { return position; }
   float get_size() const noexcept { return size; }
+  int get_window_size() const noexcept { return window_size; }
 
   void set_position(
     const sf::Vector2f &any_position);
@@ -29,10 +32,9 @@ public:
 bool are_colliding(
   const std::vector<Vehicle> &vehicles,
   const Hedgehog &hedgehog);
-Hedgehog create_hedgehog(
-  const int window_height,
-  const int window_width);
-bool has_collision_x_direction(const Hedgehog &hedgehog,
+Hedgehog create_hedgehog(const int window_size);
+bool has_collision_x_direction(
+  const Hedgehog &hedgehog,
   const Vehicle &vehicle);
 bool has_collision_y_direction(
   const Hedgehog &hedgehog,
@@ -70,6 +72,7 @@ void move_right(Hedgehog &hedgehog,
 void move_up(
   Hedgehog &hedgehog,
   const std::vector<Obstacle> &obstacles);
-sf::CircleShape get_shape(const Hedgehog &hedgehog);
+sf::CircleShape get_shape(
+  const Hedgehog &hedgehog);
 
 #endif // HEDGEHOG_H
