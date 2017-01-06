@@ -253,11 +253,6 @@ std::vector<Vehicle> create_walkers_upper_lane(
   return vehicles;
 }
 
-sf::Vector2f Vehicle::get_position() const noexcept
-{
-  return position;
-}
-
 void keep_vehicles_in_window(
   sf::RenderWindow * window,
   std::vector<Vehicle> &vehicles)
@@ -285,12 +280,13 @@ void Vehicle::set_position(
   position = any_position;
 }
 
-sf::RectangleShape Vehicle::get_shape()
+sf::RectangleShape get_shape(
+  const Vehicle &vehicle)
 {
   sf::RectangleShape vehicle_shape;
-  vehicle_shape.setSize(sf::Vector2f(length, width));
-  vehicle_shape.setPosition(position);
-  vehicle_shape.setFillColor(color);
+  vehicle_shape.setSize(sf::Vector2f(vehicle.get_length(), vehicle.get_width()));
+  vehicle_shape.setPosition(vehicle.get_position());
+  vehicle_shape.setFillColor(vehicle.get_color());
   return vehicle_shape;
 }
 

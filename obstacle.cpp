@@ -53,16 +53,12 @@ std::vector<Obstacle> create_obstacles(
   return obstacles;
 }
 
-sf::Vector2f Obstacle::get_position() const
-{
-  return position;
-}
-
-sf::RectangleShape Obstacle::get_shape()
+sf::RectangleShape get_shape(
+  const Obstacle &obstacle)
 {
   sf::RectangleShape vehicle_shape;
-  vehicle_shape.setSize(sf::Vector2f(length, width));
-  vehicle_shape.setPosition(position);
-  vehicle_shape.setFillColor(color);
+  vehicle_shape.setSize(sf::Vector2f(obstacle.get_length(), obstacle.get_width()));
+  vehicle_shape.setPosition(obstacle.get_position());
+  vehicle_shape.setFillColor(obstacle.get_color());
   return vehicle_shape;
 }

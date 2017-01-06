@@ -17,14 +17,15 @@ public:
     int width,
     sf::Color color);
 
-  int get_length() const { return length; }
-  sf::Vector2f get_position() const;
-  sf::RectangleShape get_shape();
-  int get_width() const { return width; }
+  sf::Color get_color() const noexcept { return color; }
+  int get_length() const noexcept { return length; }
+  sf::Vector2f get_position() const noexcept { return position; }
+  int get_width() const noexcept { return width; }
 };
 
 std::vector<Obstacle> create_obstacles(
   const int window_width,
   const int hedgehog_size);
+sf::RectangleShape get_shape(const Obstacle &obstacle);
 
 #endif // OBSTACLE_H

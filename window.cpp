@@ -41,12 +41,12 @@ void game_on_screen(
   window->clear();
   for(auto &obstacle : obstacles)
   {
-    window->draw(obstacle.get_shape());
+    window->draw(get_shape(obstacle));
   }
-  window->draw(hedgehog.get_shape());
+  window->draw(get_shape(hedgehog));
   for(auto &vehicle : vehicles)
   {
-    window->draw(vehicle.get_shape());
+    window->draw(get_shape(vehicle));
   }
   window->display();
 }

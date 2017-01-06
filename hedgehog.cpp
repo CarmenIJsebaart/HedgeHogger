@@ -11,8 +11,8 @@ Hedgehog::Hedgehog(
 }
 
 bool are_colliding(
-  std::vector<Vehicle> vehicles,
-  Hedgehog hedgehog)
+  const std::vector<Vehicle> &vehicles,
+  const Hedgehog &hedgehog)
 {
   for(auto &vehicle : vehicles)
   {
@@ -40,14 +40,9 @@ Hedgehog create_hedgehog(
   return hedgehog;
 }
 
-sf::Vector2f Hedgehog::get_position() const noexcept
-{
-  return position;
-}
-
 bool has_collision_x_direction(
-  Hedgehog hedgehog,
-  Vehicle vehicle)
+  const Hedgehog &hedgehog,
+  const Vehicle &vehicle)
 {
     const auto  x_min_vehicle = vehicle.get_position().x;
     const auto  x_max_vehicle = vehicle.get_position().x + vehicle.get_length();
@@ -60,8 +55,8 @@ bool has_collision_x_direction(
 }
 
 bool has_collision_y_direction(
-  Hedgehog hedgehog,
-  Vehicle vehicle)
+  const Hedgehog &hedgehog,
+  const Vehicle &vehicle)
 {
     const auto y_min_vehicle = vehicle.get_position().y;
     const auto y_max_vehicle = vehicle.get_position().y + vehicle.get_width();
@@ -74,8 +69,8 @@ bool has_collision_y_direction(
 }
 
 bool is_touching_obstacle_bottom(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size)
 {
   for(auto &obstacle : obstacles)
@@ -98,8 +93,8 @@ bool is_touching_obstacle_bottom(
 }
 
 bool is_touching_obstacle_left(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size)
 {
   for(auto &obstacle : obstacles)
@@ -122,8 +117,8 @@ bool is_touching_obstacle_left(
 }
 
 bool is_touching_obstacle_right(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size)
 {
   for(auto &obstacle : obstacles)
@@ -146,8 +141,8 @@ bool is_touching_obstacle_right(
 }
 
 bool is_touching_obstacle_top(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size)
 {
   for(auto &obstacle : obstacles)
@@ -172,7 +167,7 @@ bool is_touching_obstacle_top(
 void move(
   sf::RenderWindow * window,
   Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles)
+  const std::vector<Obstacle> &obstacles)
 {
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
   {
@@ -195,7 +190,7 @@ void move(
 void move_down(
   Hedgehog &hedgehog,
   sf::RenderWindow * window,
-  std::vector<Obstacle> obstacles)
+  const std::vector<Obstacle> &obstacles)
 {
   if(hedgehog.get_position().y + (2 * hedgehog.get_size()) < window->getSize().y &&
      is_touching_obstacle_top(obstacles, hedgehog, hedgehog.get_size()) == false)
@@ -222,7 +217,7 @@ void move_left(
 void move_right(
   Hedgehog &hedgehog,
   sf::RenderWindow * window,
-  std::vector<Obstacle> obstacles)
+  const std::vector<Obstacle> &obstacles)
 {
   if(hedgehog.get_position().x <= (window->getSize().x - (3 * hedgehog.get_size())) &&
      is_touching_obstacle_left(obstacles, hedgehog, hedgehog.get_size()) == false)
@@ -235,7 +230,7 @@ void move_right(
 
 void move_up(
   Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles)
+  const std::vector<Obstacle> &obstacles)
 {
   if(hedgehog.get_position().y >= hedgehog.get_size() &&
      is_touching_obstacle_bottom(obstacles, hedgehog, hedgehog.get_size()) == false)
@@ -252,11 +247,12 @@ void Hedgehog::set_position(
   position = any_position;
 }
 
-sf::CircleShape Hedgehog::get_shape()
+sf::CircleShape get_shape(
+  const Hedgehog &hedgehog)
 {
   sf::CircleShape hedgehog_shape;
-  hedgehog_shape.setRadius(size);
-  hedgehog_shape.setPosition(position);
-  hedgehog_shape.setFillColor(color);
+  hedgehog_shape.setRadius(hedgehog.get_size());
+  hedgehog_shape.setPosition(hedgehog.get_position());
+  hedgehog_shape.setFillColor(hedgehog.get_color());
   return hedgehog_shape;
 }

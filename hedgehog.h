@@ -17,59 +17,59 @@ public:
     const sf::Vector2f &any_position,
     float size,
     sf::Color color);
+
   sf::Color get_color() const noexcept { return color; }
-  sf::Vector2f get_position() const noexcept;
+  sf::Vector2f get_position() const noexcept { return position; }
+  float get_size() const noexcept { return size; }
+
   void set_position(
     const sf::Vector2f &any_position);
-  sf::CircleShape get_shape();
-  float get_size() const noexcept { return size; }
 };
 
 bool are_colliding(
-  std::vector<Vehicle> vehicles,
-  Hedgehog hedgehog);
+  const std::vector<Vehicle> &vehicles,
+  const Hedgehog &hedgehog);
 Hedgehog create_hedgehog(
   const int window_height,
   const int window_width);
 void move(
   sf::RenderWindow * window,
   Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles);
-bool has_collision_x_direction(
-  Hedgehog hedgehog,
-  Vehicle vehicle);
+  const std::vector<Obstacle> &obstacles);
+bool has_collision_x_direction(const Hedgehog &hedgehog,
+  const Vehicle &vehicle);
 bool has_collision_y_direction(
-  Hedgehog hedgehog,
-  Vehicle vehicle);
+  const Hedgehog &hedgehog,
+  const Vehicle &vehicle);
 bool is_touching_obstacle_bottom(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size);
 bool is_touching_obstacle_left(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size);
 bool is_touching_obstacle_right(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size);
 bool is_touching_obstacle_top(
-  std::vector<Obstacle> obstacles,
-  Hedgehog hedgehog,
+  const std::vector<Obstacle> &obstacles,
+  const Hedgehog &hedgehog,
   const int hedgehog_size);
 void move_down(
   Hedgehog &hedgehog,
   sf::RenderWindow * window,
-  std::vector<Obstacle> obstacles);
+  const std::vector<Obstacle> &obstacles);
 void move_left(
   Hedgehog &hedgehog,
   std::vector<Obstacle> obstacles);
-void move_right(
-  Hedgehog &hedgehog,
+void move_right(Hedgehog &hedgehog,
   sf::RenderWindow * window,
-  std::vector<Obstacle> obstacles);
+  const std::vector<Obstacle> &obstacles);
 void move_up(
   Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles);
+  const std::vector<Obstacle> &obstacles);
+sf::CircleShape get_shape(const Hedgehog &hedgehog);
 
 #endif // HEDGEHOG_H

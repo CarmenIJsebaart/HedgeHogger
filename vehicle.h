@@ -25,8 +25,7 @@ public:
   sf::Color get_color() const noexcept { return color; }
   bool get_direction() const noexcept { return direction; }
   int get_length() const noexcept { return length; }
-  sf::Vector2f get_position() const noexcept;
-  sf::RectangleShape get_shape();
+  sf::Vector2f get_position() const noexcept { return position; }
   double get_speed() const noexcept { return speed; }
   int get_width() const noexcept { return width; }
 
@@ -35,8 +34,8 @@ public:
 };
 
 void append(
-  const std::vector<Vehicle>& add_these_vehicles,
-  std::vector<Vehicle>& add_vehicles_here);
+  const std::vector<Vehicle> &add_these_vehicles,
+  std::vector<Vehicle> &add_vehicles_here);
 std::vector<Vehicle> create_vehicles(
   const int hedgehog_size,
   const int window_width) noexcept;
@@ -63,6 +62,7 @@ std::vector<Vehicle> create_walkers_upper_lane(
   const int hedgehog_size);
 void drive(
   std::vector<Vehicle> &vehicles);
+sf::RectangleShape get_shape(const Vehicle &vehicle);
 void keep_vehicles_in_window(
   sf::RenderWindow * window,
   std::vector<Vehicle> &vehicles);
