@@ -19,7 +19,7 @@ void Game::press_key(
 {
   if(k == sf::Keyboard::Down)
   {
-    move_down(hedgehog, window, obstacles);
+    move_down(hedgehog, *window, obstacles);
   }
   else if(k == sf::Keyboard::Left)
   {
@@ -27,7 +27,7 @@ void Game::press_key(
   }
   else if(k == sf::Keyboard::Right)
   {
-    move_right(hedgehog, window, obstacles);
+    move_right(hedgehog, *window, obstacles);
   }
   else if(k == sf::Keyboard::Up)
   {
@@ -48,7 +48,7 @@ void Game::process_poll_events()
       case sf::Event::KeyPressed:
       {
         will_restart();
-        move(window, hedgehog, obstacles);
+        move(*window, hedgehog, obstacles);
       }
       break;
     default:
@@ -90,11 +90,11 @@ void Game::tick()
   if(clock.getElapsedTime().asMilliseconds() >= update_time)
   {
     drive(vehicles);
-    keep_vehicles_in_window(window, vehicles);
+    keep_vehicles_in_window(*window, vehicles);
     clock.restart();
   }
   if(are_colliding(vehicles, hedgehog)) { is_game_over = true; }
   if(hedgehog.get_position().y == 0) { is_winner = true; }
 
-  draw_on_window(window, hedgehog, vehicles, obstacles, is_game_over, is_winner);
+  draw_on_window(*window, hedgehog, vehicles, obstacles, is_game_over, is_winner);
 }

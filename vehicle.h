@@ -64,7 +64,7 @@ void drive(
   std::vector<Vehicle> &vehicles);
 sf::RectangleShape get_shape(const Vehicle &vehicle);
 void keep_vehicles_in_window(
-  sf::RenderWindow * window,
+  const sf::RenderWindow &window,
   std::vector<Vehicle> &vehicles);
 void set_vehicle_left(
   Vehicle &vehicle);

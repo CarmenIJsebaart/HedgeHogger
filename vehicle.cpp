@@ -254,7 +254,7 @@ std::vector<Vehicle> create_walkers_upper_lane(
 }
 
 void keep_vehicles_in_window(
-  sf::RenderWindow * window,
+  const sf::RenderWindow &window,
   std::vector<Vehicle> &vehicles)
 {
   for(auto &vehicle : vehicles)
@@ -262,14 +262,14 @@ void keep_vehicles_in_window(
     sf::Vector2f position = vehicle.get_position();
     float position_x = position.x;
     if(vehicle.get_direction() == true && //true -> drive to right
-       position_x >= window->getSize().x)
+       position_x >= window.getSize().x)
     {
       set_vehicle_left(vehicle);
     }
     else if(vehicle.get_direction() == false && //false -> drive to left
             position_x <= -vehicle.get_length())
     {
-      set_vehicle_right(vehicle, window->getSize().x);
+      set_vehicle_right(vehicle, window.getSize().x);
     }
   }
 }

@@ -32,10 +32,6 @@ bool are_colliding(
 Hedgehog create_hedgehog(
   const int window_height,
   const int window_width);
-void move(
-  sf::RenderWindow * window,
-  Hedgehog &hedgehog,
-  const std::vector<Obstacle> &obstacles);
 bool has_collision_x_direction(const Hedgehog &hedgehog,
   const Vehicle &vehicle);
 bool has_collision_y_direction(
@@ -57,15 +53,19 @@ bool is_touching_obstacle_top(
   const std::vector<Obstacle> &obstacles,
   const Hedgehog &hedgehog,
   const int hedgehog_size);
+void move(
+  const sf::RenderWindow &window,
+  Hedgehog &hedgehog,
+  const std::vector<Obstacle> &obstacles);
 void move_down(
   Hedgehog &hedgehog,
-  sf::RenderWindow * window,
+  const sf::RenderWindow &window,
   const std::vector<Obstacle> &obstacles);
 void move_left(
   Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles);
+  const std::vector<Obstacle> &obstacles);
 void move_right(Hedgehog &hedgehog,
-  sf::RenderWindow * window,
+  const sf::RenderWindow &window,
   const std::vector<Obstacle> &obstacles);
 void move_up(
   Hedgehog &hedgehog,

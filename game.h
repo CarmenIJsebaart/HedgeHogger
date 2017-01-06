@@ -6,6 +6,7 @@
 #include "hedgehog.h"
 #include "obstacle.h"
 #include "window.h"
+#include <memory>
 
 class Game
 {

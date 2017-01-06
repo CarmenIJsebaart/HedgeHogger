@@ -165,7 +165,7 @@ bool is_touching_obstacle_top(
 }
 
 void move(
-  sf::RenderWindow * window,
+  const sf::RenderWindow &window,
   Hedgehog &hedgehog,
   const std::vector<Obstacle> &obstacles)
 {
@@ -189,10 +189,10 @@ void move(
 
 void move_down(
   Hedgehog &hedgehog,
-  sf::RenderWindow * window,
+  const sf::RenderWindow &window,
   const std::vector<Obstacle> &obstacles)
 {
-  if(hedgehog.get_position().y + (2 * hedgehog.get_size()) < window->getSize().y &&
+  if(hedgehog.get_position().y + (2 * hedgehog.get_size()) < window.getSize().y &&
      is_touching_obstacle_top(obstacles, hedgehog, hedgehog.get_size()) == false)
   {
     sf::Vector2f hedgehog_position = hedgehog.get_position();
@@ -201,9 +201,8 @@ void move_down(
    }
 }
 
-void move_left(
-  Hedgehog &hedgehog,
-  std::vector<Obstacle> obstacles)
+void move_left(Hedgehog &hedgehog,
+  const std::vector<Obstacle> &obstacles)
 {
   if(hedgehog.get_position().x >= hedgehog.get_size() &&
      is_touching_obstacle_right(obstacles, hedgehog, hedgehog.get_size()) == false)
@@ -216,10 +215,10 @@ void move_left(
 
 void move_right(
   Hedgehog &hedgehog,
-  sf::RenderWindow * window,
+  const sf::RenderWindow &window,
   const std::vector<Obstacle> &obstacles)
 {
-  if(hedgehog.get_position().x <= (window->getSize().x - (3 * hedgehog.get_size())) &&
+  if(hedgehog.get_position().x <= (window.getSize().x - (3 * hedgehog.get_size())) &&
      is_touching_obstacle_left(obstacles, hedgehog, hedgehog.get_size()) == false)
   {
     sf::Vector2f hedgehog_position = hedgehog.get_position();

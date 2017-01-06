@@ -11,10 +11,10 @@ sf::RenderWindow * create_window(
 }
 
 void draw_on_window(
-  sf::RenderWindow * window,
-  Hedgehog hedgehog,
-  std::vector<Vehicle> vehicles,
-  std::vector<Obstacle> obstacles,
+  sf::RenderWindow &window,
+  const Hedgehog &hedgehog,
+  const std::vector<Vehicle> &vehicles,
+  const std::vector<Obstacle> &obstacles,
   bool is_game_over,
   bool is_winner)
 {
@@ -33,26 +33,26 @@ void draw_on_window(
 }
 
 void game_on_screen(
-  sf::RenderWindow * window,
-  std::vector<Obstacle> obstacles,
-  std::vector<Vehicle> vehicles,
-  Hedgehog hedgehog)
+  sf::RenderWindow &window,
+  const std::vector<Obstacle> &obstacles,
+  const std::vector<Vehicle> &vehicles,
+  const Hedgehog &hedgehog)
 {
-  window->clear();
+  window.clear();
   for(auto &obstacle : obstacles)
   {
-    window->draw(get_shape(obstacle));
+    window.draw(get_shape(obstacle));
   }
-  window->draw(get_shape(hedgehog));
+  window.draw(get_shape(hedgehog));
   for(auto &vehicle : vehicles)
   {
-    window->draw(get_shape(vehicle));
+    window.draw(get_shape(vehicle));
   }
-  window->display();
+  window.display();
 }
 
 void game_over_screen(
-  sf::RenderWindow * window)
+  sf::RenderWindow &window)
 {
   sf::Text text;
   sf::Font font;
@@ -61,15 +61,15 @@ void game_over_screen(
   text.setPosition(100,100);
   text.setColor(sf::Color::White);
 
-  window->clear(sf::Color::Black);
+  window.clear(sf::Color::Black);
   text.setString("Game Over");
   text.setCharacterSize(80);
-  window->draw(text);
-  window->display();
+  window.draw(text);
+  window.display();
 }
 
 void is_winner_screen(
-  sf::RenderWindow * window)
+  sf::RenderWindow &window)
 {
   sf::Text text;
   sf::Font font;
@@ -78,9 +78,9 @@ void is_winner_screen(
   text.setPosition(100,100);
   text.setColor(sf::Color::White);
 
-  window->clear(sf::Color::Red);
+  window.clear(sf::Color::Red);
   text.setString("Winner!");
   text.setCharacterSize(120);
-  window->draw(text);
-  window->display();
+  window.draw(text);
+  window.display();
 }
