@@ -31,6 +31,10 @@ void Game::press_key(
   {
     move_up(hedgehog, obstacles);
   }
+  else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+  {
+    will_restart();
+  }
 }
 
 void Game::process_poll_events()
@@ -45,7 +49,6 @@ void Game::process_poll_events()
         break;
       case sf::Event::KeyPressed:
       {
-        will_restart();
         press_key(event.key.code);
       }
       break;
@@ -54,15 +57,6 @@ void Game::process_poll_events()
     }
   }
 }
-
-void Game::will_restart()
-{
-  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-  {
-    restart();
-  }
-}
-
 
 void Game::restart()
 {
@@ -94,4 +88,12 @@ void Game::tick()
   if(hedgehog.get_position().y == 0) { state = Gamestate::game_won; }
 
   draw_on_window(*window, hedgehog, vehicles, obstacles, state);
+}
+
+void Game::will_restart()
+{
+  if(state == Gamestate::game_over || state == Gamestate::game_won)
+  {
+    restart();
+  }
 }
